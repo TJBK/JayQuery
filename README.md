@@ -1,5 +1,11 @@
 # JayQuery
 
+[![CI](https://github.com/LukeSteward/JayQuery/actions/workflows/ci.yml/badge.svg)](https://github.com/LukeSteward/JayQuery/actions/workflows/ci.yml)
+[![Extension zip](https://github.com/LukeSteward/JayQuery/actions/workflows/extension-zip.yml/badge.svg)](https://github.com/LukeSteward/JayQuery/actions/workflows/extension-zip.yml)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jicgjligckkjmecbbakkbpfbagfdfdol?label=Chrome%20Web%20Store&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/jayquery/jicgjligckkjmecbbakkbpfbagfdfdol)
+
+**Install:** [JayQuery on the Chrome Web Store](https://chromewebstore.google.com/detail/jayquery/jicgjligckkjmecbbakkbpfbagfdfdol)
+
 Browser extension (**Chrome / Edge**, Manifest V3) that inspects the **active tab’s hostname**, resolves **TXT** records over **DNS-over-HTTPS** (Cloudflare primary, Google fallback), evaluates **SPF**, **DMARC**, and **DKIM** (common selectors), and shows a **score out of 10** with a per-protocol breakdown.
 
 Conceptually aligned with [JohnDuprey/DNSHealth](https://github.com/johnduprey/DNSHealth); this project implements similar checks in **TypeScript** for the browser instead of PowerShell.
@@ -62,6 +68,11 @@ npm test
 - **DKIM** tries a fixed list of common selectors (`google`, `default`, `selector1`, `selector2`, …); custom selectors may be missed.
 - **Not included** (would need broader permissions or extra APIs): MTA-STS **HTTPS** policy fetch, HTTPS certificate checks, WHOIS.
 - Resolution uses **public** DNS; split-horizon or unpublished records will not appear.
+
+## Contributing & security
+
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
 
 ## Licence
 

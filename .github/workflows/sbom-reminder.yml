@@ -1,0 +1,168 @@
+# When dependency or SBOM files change, remind maintainers to refresh committed SBOMs.
+# Skips the reminder (and removes an existing sticky comment) when the PR already updates
+# both sbom-cyclonedx-npm.json and sbom.spdx.json.
+# Paths include SBOM files so pushes that only touch SBOMs still run (covers follow-up commits).
+# Fresh `npm sbom` output is not byte-stable (UUID/timestamps), so we remind rather than diff.
+
+name: SBOM update reminder
+
+on:
+  pull_request:
+    paths:
+      - package.json
+      - package-lock.json
+      - sbom-cyclonedx-npm.json
+      - sbom.spdx.json
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+concurrency:
+  group: sbom-reminder-${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - id: sbom-reminder-eval
+        name: Evaluate whether SBOM reminder is needed
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require("node:fs");
+            const pullNumber = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner,
+              repo,
+              pull_number: pullNumber,
+              per_page: 100,
+            });
+
+            const filenames = new Set(files.map((f) => f.filename.replace(/\\/g, "/")));
+
+            const depsChanged =
+              filenames.has("package.json") || filenames.has("package-lock.json");
+            const sbomArtifactsUpdated =
+              filenames.has("sbom-cyclonedx-npm.json") &&
+              filenames.has("sbom.spdx.json");
+
+            // Skip flagging whenever dependency files aren't part of this PR, or both SBOMs are.
+            const suppressReminder = !depsChanged || sbomArtifactsUpdated;
+
+            fs.appendFileSync(
+              process.env.GITHUB_OUTPUT,
+              `suppress_reminder=${suppressReminder}\n`,
+            );
+
+      - name: Show SBOM reminder on the check (all PRs)
+        if: steps.sbom-reminder-eval.outputs.suppress_reminder != 'true'
+        run: |
+          echo "::notice title=Update SBOM artifacts::This PR changes package.json or package-lock.json. Regenerate and commit sbom-cyclonedx-npm.json and sbom.spdx.json from the repo root after npm install."
+          echo ""
+          echo "Bash:"
+          echo '  npm sbom --package-lock-only --sbom-format=cyclonedx 2>/dev/null > sbom-cyclonedx-npm.json'
+          echo '  npm sbom --package-lock-only --sbom-format=spdx 2>/dev/null > sbom.spdx.json'
+          echo ""
+          echo "PowerShell:"
+          echo '  npm sbom --package-lock-only --sbom-format=cyclonedx 2>$null | Set-Content -Encoding utf8 sbom-cyclonedx-npm.json'
+          echo '  npm sbom --package-lock-only --sbom-format=spdx 2>$null | Set-Content -Encoding utf8 sbom.spdx.json'
+
+      - name: Upsert SBOM reminder PR comment (same-repo PRs only)
+        if: >
+          steps.sbom-reminder-eval.outputs.suppress_reminder != 'true' &&
+          github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const marker = "<!-- sbom-update-reminder -->";
+            const body = [
+              marker,
+              "",
+              "### SBOM reminder",
+              "",
+              "This PR touches **npm dependency files**. If you keep SBOMs in git, regenerate them from the repo root and add them to this PR:",
+              "",
+              "**Bash**",
+              "```bash",
+              "npm sbom --package-lock-only --sbom-format=cyclonedx 2>/dev/null > sbom-cyclonedx-npm.json",
+              "npm sbom --package-lock-only --sbom-format=spdx 2>/dev/null > sbom.spdx.json",
+              "```",
+              "",
+              "**PowerShell**",
+              "```powershell",
+              "npm sbom --package-lock-only --sbom-format=cyclonedx 2>$null | Set-Content -Encoding utf8 sbom-cyclonedx-npm.json",
+              "npm sbom --package-lock-only --sbom-format=spdx 2>$null | Set-Content -Encoding utf8 sbom.spdx.json",
+              "```",
+              "",
+              "Omit dev dependencies (optional): append `--omit dev` to each command.",
+              "",
+              "— _Posted by workflow `sbom-reminder.yml`. Comment updates when dependency files change._",
+              "",
+            ].join("\n");
+
+            const { owner, repo } = context.repo;
+            const issueNumber = context.issue.number;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number: issueNumber,
+              per_page: 100,
+            });
+
+            const botLogin = "github-actions[bot]";
+            const existing = comments.find(
+              (c) =>
+                c.user?.login === botLogin &&
+                c.body?.includes(marker),
+            );
+
+            const commentPayload = { owner, repo, body };
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                ...commentPayload,
+                comment_id: existing.id,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                ...commentPayload,
+                issue_number: issueNumber,
+              });
+            }
+
+      - name: Remove SBOM reminder comment when both SBOMs are included
+        if: >
+          steps.sbom-reminder-eval.outputs.suppress_reminder == 'true' &&
+          github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const marker = "<!-- sbom-update-reminder -->";
+            const { owner, repo } = context.repo;
+            const issueNumber = context.issue.number;
+            const botLogin = "github-actions[bot]";
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number: issueNumber,
+              per_page: 100,
+            });
+
+            const ours = comments.filter(
+              (c) => c.user?.login === botLogin && c.body?.includes(marker),
+            );
+
+            for (const c of ours) {
+              await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: c.id,
+              });
+            }

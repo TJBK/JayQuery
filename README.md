@@ -14,7 +14,7 @@ Conceptually aligned with [JohnDuprey/DNSHealth](https://github.com/johnduprey/D
 ## Privacy & network
 
 - **Permissions:** **`tabs`** reads each tab’s **URL** once a navigation **finishes loading** (`tabs.onUpdated`, `complete`) and refreshes the **toolbar icon** after a **reload** or when the **hostname** changes (same host with only path/query/`#` changes does not re-run). Toolbar status glyphs are **drawn with `OffscreenCanvas`** (stroke paths) directly in the extension context; no SVG decode pipeline or **`offscreen`** document. **Storage** persists settings locally.
-- **Host access:** `http://*/*` and `https://*/*` are declared so the browser can expose tab URLs to those APIs; **no code requests or injects into page content** for that. **DNS-over-HTTPS** uses `https://cloudflare-dns.com/*` and `https://dns.google/*`. The Entra-related probe uses `https://login.microsoftonline.com/*` per manifest.
+- **Host access (see `wxt.config.ts`):** **DNS-over-HTTPS** only — `https://cloudflare-dns.com/*` and `https://dns.google/*` (primary vs fallback is user-configurable). The Entra-related probe uses `https://login.microsoftonline.com/*`. There is **no** broad `http(s)://*/*` host pattern; **`tabs`** is what exposes `Tab.url` for the toolbar and popup. The extension **does not** inject content scripts or fetch arbitrary page URLs.
 
 ## Prerequisites
 

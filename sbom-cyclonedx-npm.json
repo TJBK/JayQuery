@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "serialNumber": "urn:uuid:f6dfa76e-e6f9-470c-8352-091eaeecd9a6",
+  "serialNumber": "urn:uuid:09219b79-1442-4f84-b8c4-f275ddb50fb6",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-05-07T11:47:10.958Z",
+    "timestamp": "2026-05-08T21:54:14.029Z",
     "lifecycles": [
       {
         "phase": "pre-build"
@@ -19,13 +19,13 @@
       }
     ],
     "component": {
-      "bom-ref": "jayquery@0.2.0",
+      "bom-ref": "jayquery@0.3.0",
       "type": "library",
       "name": "JayQuery",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "scope": "required",
-      "description": "SPF, DMARC, and DKIM checks for the active tab hostname (Chrome & Edge).",
-      "purl": "pkg:npm/jayquery@0.2.0",
+      "description": "Email-authentication DNS (SPF, DMARC, DKIM) plus MX/NS/MTA-STS/TLS-RPT/DNSSEC via DoH, and Entra OIDC tenant probe ÔÇö Chrome, Edge & Firefox MV3.",
+      "purl": "pkg:npm/jayquery@0.3.0",
       "properties": [
         {
           "name": "cdx:npm:package:private",
@@ -13896,7 +13896,7 @@
   ],
   "dependencies": [
     {
-      "ref": "jayquery@0.2.0",
+      "ref": "jayquery@0.3.0",
       "dependsOn": [
         "tldts@7.0.30",
         "@types/chrome@0.1.42",

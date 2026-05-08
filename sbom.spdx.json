@@ -2,24 +2,24 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "jayquery@0.2.0",
-  "documentNamespace": "http://spdx.org/spdxdocs/jayquery-0.2.0-b77eedd0-ffb8-4594-9015-2a600ecdab0d",
+  "name": "jayquery@0.3.0",
+  "documentNamespace": "http://spdx.org/spdxdocs/jayquery-0.3.0-6307c032-e238-4d7d-bc15-783489a751a6",
   "creationInfo": {
-    "created": "2026-05-07T11:47:12.016Z",
+    "created": "2026-05-08T21:54:16.880Z",
     "creators": [
       "Tool: npm/cli-11.12.1"
     ]
   },
   "documentDescribes": [
-    "SPDXRef-Package-jayquery-0.2.0"
+    "SPDXRef-Package-jayquery-0.3.0"
   ],
   "packages": [
     {
       "name": "jayquery",
-      "SPDXID": "SPDXRef-Package-jayquery-0.2.0",
-      "versionInfo": "0.2.0",
+      "SPDXID": "SPDXRef-Package-jayquery-0.3.0",
+      "versionInfo": "0.3.0",
       "packageFileName": "",
-      "description": "SPF, DMARC, and DKIM checks for the active tab hostname (Chrome & Edge).",
+      "description": "Email-authentication DNS (SPF, DMARC, DKIM) plus MX/NS/MTA-STS/TLS-RPT/DNSSEC via DoH, and Entra OIDC tenant probe ÔÇö Chrome, Edge & Firefox MV3.",
       "primaryPackagePurpose": "LIBRARY",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -29,7 +29,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/jayquery@0.2.0"
+          "referenceLocator": "pkg:npm/jayquery@0.3.0"
         }
       ]
     },
@@ -9720,32 +9720,32 @@
   "relationships": [
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
       "relationshipType": "DESCRIBES"
     },
     {
       "spdxElementId": "SPDXRef-Package-tldts-7.0.30",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-types.chrome-0.1.42",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-typescript-6.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-vitest-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-wxt-0.20.25",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {

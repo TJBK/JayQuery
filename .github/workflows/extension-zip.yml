@@ -1,14 +1,17 @@
-# Builds a distributable Chrome MV3 zip (WXT) and uploads it as a workflow artifact.
-# Download: repo → Actions → latest run → Artifacts. Unzip, then chrome://extensions → Load unpacked → select the extracted folder.
+# Builds WXT zips for Chrome MV3 and Firefox MV3 and uploads them as workflow artifacts.
+# Download: repo → Actions → latest run → Artifacts.
+#   Chrome: unzip → chrome://extensions → Load unpacked (or load the chrome zip per WXT docs).
+#   Firefox: unpackaged build is `.output/firefox-mv3/`; zips include the XPI-style package plus
+#   `-sources.zip` (for AMO). Temporary install: about:debugging → Load Temporary Add-on.
 #
 # GitHub Release (automatic on main):
 #   1. Bump "version" in package.json, commit, and push to main.
-#   2. This workflow builds the zip. If there is no tag v{version} on the remote yet,
-#      it creates that tag on the pushed commit, publishes a Release, and attaches the zip
+#   2. This workflow builds the zips. If there is no tag v{version} on the remote yet,
+#      it creates that tag on the pushed commit, publishes a Release, and attaches the zip files
 #      with GitHub-generated release notes (PRs) plus a ## Commits section built from
 #      non-merge commit subjects since the previous v* tag (covers direct pushes to main).
 #   3. Pushes that only change code but not version (tag already exists) still build the
-#      artifact but skip the release job.
+#      artifacts but skip the release job.
 
 name: Extension zip
 
@@ -63,12 +66,25 @@ jobs:
       - name: Produce extension zip (Chrome MV3)
         run: npm run zip
 
-      - name: Upload zip artifact
+      - name: Produce extension zips (Firefox MV3)
+        run: npm run zip:firefox
+
+      - name: Upload Chrome extension zip
         uses: actions/upload-artifact@v7
         with:
           name: jayquery-chrome-mv3
           include-hidden-files: true
-          path: .output/*.zip
+          path: .output/jayquery-*-chrome.zip
+          if-no-files-found: error
+
+      - name: Upload Firefox extension zips
+        uses: actions/upload-artifact@v7
+        with:
+          name: jayquery-firefox-mv3
+          include-hidden-files: true
+          path: |
+            .output/jayquery-*-firefox.zip
+            .output/jayquery-*-sources.zip
           if-no-files-found: error
 
   release:
@@ -110,11 +126,12 @@ jobs:
             echo ""
           } > release-notes-extra.md
 
-      - name: Download zip artifact
+      - name: Download extension artifacts
         uses: actions/download-artifact@v8
         with:
-          name: jayquery-chrome-mv3
+          pattern: jayquery-*-mv3
           path: release-assets
+          merge-multiple: true
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2

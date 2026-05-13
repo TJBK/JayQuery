@@ -2,12 +2,25 @@
 
 [![CI](https://github.com/LukeSteward/JayQuery/actions/workflows/ci.yml/badge.svg)](https://github.com/LukeSteward/JayQuery/actions/workflows/ci.yml)
 [![Extension zip](https://github.com/LukeSteward/JayQuery/actions/workflows/extension-zip.yml/badge.svg)](https://github.com/LukeSteward/JayQuery/actions/workflows/extension-zip.yml)
+[![Edge Web Store](https://img.shields.io/badge/Edge%20Web%20Store-passing-brightgreen?logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/jayquery/jkgijecdjbnigliabkajkmbhdimjdggh)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jicgjligckkjmecbbakkbpfbagfdfdol?label=Chrome%20Web%20Store&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/jayquery/jicgjligckkjmecbbakkbpfbagfdfdol)
 
 
-**Install:** [JayQuery on the Chrome Web Store](https://chromewebstore.google.com/detail/jayquery/jicgjligckkjmecbbakkbpfbagfdfdol) or
+**Install:**
 
-[![Edge badge](https://github.com/jkerai1/JayQuery/blob/main/public/microsoft-edge-add-ons-badge.png?raw=true)](https://microsoftedge.microsoft.com/addons/detail/jayquery/jkgijecdjbnigliabkajkmbhdimjdggh/)
+<a href="https://microsoftedge.microsoft.com/addons/detail/jayquery/jkgijecdjbnigliabkajkmbhdimjdggh">
+  <img src="https://github.com/LukeSteward/JayQuery/blob/main/github-assets/edge-store.png?raw=true" 
+       alt="Edge badge" 
+       width="350" 
+       height="auto">
+</a>
+
+<a href="https://chromewebstore.google.com/detail/jayquery/jicgjligckkjmecbbakkbpfbagfdfdol">
+  <img src="https://github.com/LukeSteward/JayQuery/blob/main/github-assets/chrome-store.png?raw=true" 
+       alt="Chrome badge" 
+       width="350" 
+       height="auto">
+</a>
 
 Browser extension (**Chrome / Edge**, Manifest V3) that inspects the **active tab’s hostname**, resolves **TXT** records over **DNS-over-HTTPS** (Cloudflare primary, Google fallback), evaluates **SPF**, **DMARC**, and **DKIM** (common selectors), and shows a **score out of 10** with a per-protocol breakdown.
 

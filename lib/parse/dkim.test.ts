@@ -63,10 +63,16 @@ describe('dkimSelectorsForDnsProbe', () => {
     expect(dkimSelectorsForDnsProbe([])).toEqual(fallback);
   });
 
-  it('uses only MX profile selectors when provided', () => {
+  it('uses MX profile selectors before fallback selectors when provided', () => {
     expect(dkimSelectorsForDnsProbe(['selector1', 'selector2'])).toEqual([
       'selector1',
       'selector2',
+      'google',
+      'default',
+      'k1',
+      's1',
+      'dkim',
+      'mail',
     ]);
   });
 
@@ -74,6 +80,12 @@ describe('dkimSelectorsForDnsProbe', () => {
     expect(dkimSelectorsForDnsProbe(['selector1 ', ' Selector1', 'selector2'])).toEqual([
       'selector1',
       'selector2',
+      'google',
+      'default',
+      'k1',
+      's1',
+      'dkim',
+      'mail',
     ]);
   });
 

@@ -116,7 +116,7 @@ function mxtoolboxEmailHealthUrl(domain: string): string {
 }
 
 const DNS_TECHNIQUE_DISCLOSURE =
-  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes *._domainkey first, then _domainkey and common selectors.';
+  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes _domainkey for null DKIM, then provider/common selectors, then *._domainkey.';
 
 const WALL_OF_SHAME_REPO = 'jkerai1/DMARC-WallOfShame';
 

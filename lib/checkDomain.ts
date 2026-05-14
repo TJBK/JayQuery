@@ -84,12 +84,12 @@ const DNS_FAIL_DMARC = (org: string): GradeLine[] => [
 function dnsFailDkimLines(mxProfileSelectors?: readonly string[]): GradeLine[] {
   const probeHint =
     mxProfileSelectors && mxProfileSelectors.length > 0
-      ? `configured selectors (${mxProfileSelectors.join(', ')})`
+      ? `configured selectors (${mxProfileSelectors.join(', ')}) or fallback selectors`
       : 'any probed selector';
   return [
     {
       status: 'fail',
-      text: `Could not resolve DKIM TXT at *._domainkey, _domainkey, or ${probeHint} (DNS error or non-definitive response).`,
+      text: `Could not resolve DKIM TXT at _domainkey, ${probeHint}, or *._domainkey (DNS error or non-definitive response).`,
     },
   ];
 }
@@ -165,64 +165,66 @@ export async function runDnsCheck(
   let dkimBest: (DkimRecordAnalysis & { selector: string }) | null = null;
   let hadDefinitiveDkimLookup = false;
 
-  const wildcardDkimDet = await resolveTxtDetailed(
-    dkimDnsWildcardFqdn(queryHost),
-    dnsTxt,
-  );
+  const apexDkimFqdn = `_domainkey.${queryHost}`;
+  const apexDkimDet = await resolveTxtDetailed(apexDkimFqdn, dnsTxt);
   if (
-    wildcardDkimDet.dnsState === 'ok' ||
-    wildcardDkimDet.dnsState === 'nxdomain'
+    apexDkimDet.dnsState === 'ok' ||
+    apexDkimDet.dnsState === 'nxdomain'
   ) {
     hadDefinitiveDkimLookup = true;
   }
-  const wildcardTxts = analysisStrings(wildcardDkimDet, treatDnsAsFail);
-  const wildcardMerged = mergeTxtForDkim(wildcardTxts);
-  const wildcardRec = analyzeDkimRecord(wildcardMerged);
-  const wildcardOverrides =
-    isNullDkimDeclaration(wildcardRec) ||
-    wildcardRec.valid ||
-    Boolean(wildcardRec.raw);
+  const apexDkimTxts = analysisStrings(apexDkimDet, treatDnsAsFail);
+  const apexDkimMerged = mergeTxtForDkim(apexDkimTxts);
+  const apexDkimRec = analyzeDkimRecord(apexDkimMerged);
 
-  if (wildcardOverrides) {
-    dkimBest = { ...wildcardRec, selector: '*' };
+  if (isNullDkimDeclaration(apexDkimRec)) {
+    dkimBest = { ...apexDkimRec, selector: '_domainkey' };
   } else {
-    const apexDkimFqdn = `_domainkey.${queryHost}`;
-    const apexDkimDet = await resolveTxtDetailed(apexDkimFqdn, dnsTxt);
-    if (
-      apexDkimDet.dnsState === 'ok' ||
-      apexDkimDet.dnsState === 'nxdomain'
-    ) {
-      hadDefinitiveDkimLookup = true;
+    if (apexDkimRec.raw) {
+      dkimBest = { ...apexDkimRec, selector: '_domainkey' };
     }
-    const apexDkimTxts = analysisStrings(apexDkimDet, treatDnsAsFail);
-    const apexDkimMerged = mergeTxtForDkim(apexDkimTxts);
-    const apexDkimRec = analyzeDkimRecord(apexDkimMerged);
 
-    if (isNullDkimDeclaration(apexDkimRec)) {
-      dkimBest = { ...apexDkimRec, selector: '_domainkey' };
-    } else if (apexDkimRec.valid) {
-      dkimBest = { ...apexDkimRec, selector: '_domainkey' };
-    } else {
-      for (const sel of dkimProbeSelectors) {
-        const name = `${sel}._domainkey.${queryHost}`;
-        const det = await resolveTxtDetailed(name, dnsTxt);
-        if (det.dnsState === 'ok' || det.dnsState === 'nxdomain') {
-          hadDefinitiveDkimLookup = true;
-        }
-        const txts = analysisStrings(det, treatDnsAsFail);
-        const merged = mergeTxtForDkim(txts);
-        const rec = analyzeDkimRecord(merged);
-        const tagged: DkimRecordAnalysis & { selector: string } = {
-          ...rec,
-          selector: sel,
-        };
-        if (rec.valid) {
-          dkimBest = tagged;
-          break;
-        }
-        if (!dkimBest && rec.raw) {
-          dkimBest = tagged;
-        }
+    for (const sel of dkimProbeSelectors) {
+      const name = `${sel}._domainkey.${queryHost}`;
+      const det = await resolveTxtDetailed(name, dnsTxt);
+      if (det.dnsState === 'ok' || det.dnsState === 'nxdomain') {
+        hadDefinitiveDkimLookup = true;
+      }
+      const txts = analysisStrings(det, treatDnsAsFail);
+      const merged = mergeTxtForDkim(txts);
+      const rec = analyzeDkimRecord(merged);
+      const tagged: DkimRecordAnalysis & { selector: string } = {
+        ...rec,
+        selector: sel,
+      };
+      if (rec.valid) {
+        dkimBest = tagged;
+        break;
+      }
+      if (!dkimBest && rec.raw) {
+        dkimBest = tagged;
+      }
+    }
+
+    if (!dkimBest || !dkimBest.valid) {
+      const wildcardDkimDet = await resolveTxtDetailed(
+        dkimDnsWildcardFqdn(queryHost),
+        dnsTxt,
+      );
+      if (
+        wildcardDkimDet.dnsState === 'ok' ||
+        wildcardDkimDet.dnsState === 'nxdomain'
+      ) {
+        hadDefinitiveDkimLookup = true;
+      }
+      const wildcardTxts = analysisStrings(wildcardDkimDet, treatDnsAsFail);
+      const wildcardMerged = mergeTxtForDkim(wildcardTxts);
+      const wildcardRec = analyzeDkimRecord(wildcardMerged);
+
+      if (wildcardRec.valid || isNullDkimDeclaration(wildcardRec)) {
+        dkimBest = { ...wildcardRec, selector: '*' };
+      } else if (!dkimBest && wildcardRec.raw) {
+        dkimBest = { ...wildcardRec, selector: '*' };
       }
     }
   }

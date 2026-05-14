@@ -123,6 +123,21 @@ body {
   outline-offset: 2px;
 }
 
+.result-note {
+  margin-top: 12px;
+  padding: 10px 11px;
+  border: 1px solid rgba(230, 184, 74, 0.28);
+  border-radius: 8px;
+  background: rgba(230, 184, 74, 0.08);
+}
+
+.result-note__text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
 .footer-action-btn--shame {
   color: var(--fail);
   border-color: rgba(240, 113, 120, 0.35);

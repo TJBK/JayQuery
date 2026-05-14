@@ -152,6 +152,25 @@ function hasReportableDmarcIssue(result: CheckResult): boolean {
   return result.full.dmarc.status !== 'pass';
 }
 
+function hasMailAuthIssue(result: CheckResult): boolean {
+  return (
+    result.full.spf.status !== 'pass' ||
+    result.full.dmarc.status !== 'pass' ||
+    result.full.dkim.status !== 'pass'
+  );
+}
+
+function renderEmailDomainCaution(result: CheckResult): string {
+  if (!hasMailAuthIssue(result)) {
+    return '';
+  }
+  return `
+    <div class="result-note" role="note">
+      <p class="result-note__text">This score applies to the checked DNS name. A website may send mail from another domain, so confirm real email headers before judging it. If this domain does not send mail, it should still publish protective records, especially SPF <span class="mono">-all</span> and DMARC <span class="mono">p=reject</span>.</p>
+    </div>
+  `;
+}
+
 function renderResultFooterActions(result: CheckResult): string {
   const showCastShame = hasReportableDmarcIssue(result);
   const castShameBtn = showCastShame
@@ -530,6 +549,8 @@ function renderResult(result: CheckResult): void {
           )
           .join('')}
       </div>
+
+      ${renderEmailDomainCaution(result)}
 
       <footer class="footer">
         ${renderResultFooterActions(result)}

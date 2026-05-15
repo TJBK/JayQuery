@@ -1103,6 +1103,30 @@ body {
   margin-bottom: 2px;
 }
 
+.fix-guidance {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.fix-guidance summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.fix-guidance summary:hover {
+  color: #7ea6ff;
+}
+
+.fix-guidance p {
+  margin: 8px 0 0;
+  line-height: 1.45;
+  color: #a8afbf;
+}
+
 .badge {
   font-size: 0.65rem;
   font-weight: 600;

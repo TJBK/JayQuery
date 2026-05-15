@@ -348,6 +348,38 @@ function renderSpfMailProviderHint(h: SpfMailProviderHint): string {
     </div>`;
 }
 
+function renderFixGuidance(title: 'SPF' | 'DMARC' | 'DKIM', result: CheckResult): string {
+  const score = title === 'SPF'
+    ? result.full.spf
+    : title === 'DMARC'
+      ? result.full.dmarc
+      : result.full.dkim;
+  if (score.status === 'pass') return '';
+
+  const host = title === 'DMARC'
+    ? `_dmarc.${result.dmarcLookupHost}`
+    : result.queryHostname;
+  let guidance = '';
+  if (title === 'SPF') {
+    const providerInclude = result.spfMailProviderHint?.expectedInclude;
+    const example = providerInclude
+      ? `v=spf1 include:${providerInclude} -all`
+      : 'v=spf1 -all';
+    guidance = `Publish one TXT record at ${host}. Example for a domain that sends no mail, or after adding approved senders: ${example}`;
+  } else if (title === 'DMARC') {
+    guidance = `Publish one TXT record at ${host}. Start with reporting, then move toward enforcement: v=DMARC1; p=none; rua=mailto:dmarc@example.com`;
+  } else {
+    guidance = 'Confirm the selector your mail platform signs with, then publish that selector under selector._domainkey. Custom selectors can be added in settings.';
+  }
+
+  return `
+    <details class="fix-guidance">
+      <summary>Fix guidance</summary>
+      <p>${escapeHtml(guidance)}</p>
+    </details>
+  `;
+}
+
 function renderProtocolCard(
   title: string,
   score: FullScore['spf'],
@@ -578,6 +610,7 @@ function renderResult(result: CheckResult): void {
     (detailedBreakdown || result.spfMailProviderHint.status !== 'pass')
       ? renderSpfMailProviderHint(result.spfMailProviderHint)
       : '';
+  const spfFooter = `${spfSupplement}${renderFixGuidance('SPF', result)}`;
 
   root.innerHTML = `
     <div class="shell shell--with-fab">
@@ -601,7 +634,7 @@ function renderResult(result: CheckResult): void {
           result.spfBreakdown,
           detailedBreakdown,
           undefined,
-          spfSupplement || undefined,
+          spfFooter || undefined,
         )}
         ${renderProtocolCard(
           'DMARC',
@@ -611,6 +644,7 @@ function renderResult(result: CheckResult): void {
           result.dmarcBreakdown,
           detailedBreakdown,
           dmarcHint(result),
+          renderFixGuidance('DMARC', result) || undefined,
         )}
         ${renderProtocolCard(
           'DKIM',
@@ -619,6 +653,8 @@ function renderResult(result: CheckResult): void {
           dkimRaw,
           result.dkimBreakdown,
           detailedBreakdown,
+          undefined,
+          renderFixGuidance('DKIM', result) || undefined,
         )}
         ${result.mailInfra
           .map((c) =>

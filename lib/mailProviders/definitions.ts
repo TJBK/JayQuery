@@ -28,6 +28,19 @@ export const MAIL_PROVIDER_DEFINITIONS: MailProviderDefinition[] = [
     Selectors: [''],
   },
   {
+    Name: 'Amazon SES',
+    MxMatch: 'amazonses.com',
+    SpfInclude: 'amazonses.com',
+    Selectors: [''],
+  },
+  {
+    Name: 'Fastmail',
+    MxMatch: 'messagingengine.com',
+    SpfInclude: 'spf.messagingengine.com',
+    Selectors: ['fm1', 'fm2', 'fm3'],
+    MinimumSelectorPass: 1,
+  },
+  {
     Name: 'Google',
     // Workspace publishes both *.l.google.com and *.googlemail.com MX hosts.
     MxMatch: 'google\\.com|googlemail\\.com',
@@ -46,6 +59,12 @@ export const MAIL_PROVIDER_DEFINITIONS: MailProviderDefinition[] = [
     MxMatch: 'serverdata.net',
     SpfInclude: 'spf.intermedia.net',
     Selectors: [''],
+  },
+  {
+    Name: 'Mailgun',
+    MxMatch: 'mailgun.org',
+    SpfInclude: 'mailgun.org',
+    Selectors: ['smtp'],
   },
   {
     Name: 'Microsoft 365',
@@ -75,6 +94,19 @@ export const MAIL_PROVIDER_DEFINITIONS: MailProviderDefinition[] = [
     Selectors: [''],
   },
   {
+    Name: 'Postmark',
+    MxMatch: 'inbound.postmarkapp.com',
+    SpfInclude: 'spf.mtasv.net',
+    Selectors: ['pm'],
+  },
+  {
+    Name: 'SendGrid',
+    MxMatch: 'sendgrid.net',
+    SpfInclude: 'sendgrid.net',
+    Selectors: ['s1', 's2'],
+    MinimumSelectorPass: 1,
+  },
+  {
     Name: 'Sophos',
     MxMatch:
       'mx-[0-9]{2}-(?<Country>(us|eu))-(?<Location>(central|east|west))-(?<Server>([0-9])).prod.hydra.sophos.com',
@@ -90,5 +122,11 @@ export const MAIL_PROVIDER_DEFINITIONS: MailProviderDefinition[] = [
     MxMatch: 'cluster[0-9].{3,4}.messagelabs.com',
     SpfInclude: 'spf.messagelabs.com',
     Selectors: [''],
+  },
+  {
+    Name: 'Zoho Mail',
+    MxMatch: 'zoho.com|zoho.eu|zohomail.com',
+    SpfInclude: 'zoho.com',
+    Selectors: ['zmail'],
   },
 ];

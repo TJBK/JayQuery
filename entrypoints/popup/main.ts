@@ -100,6 +100,11 @@ function statusLabel(status: HealthStatus): string {
   }
 }
 
+function gradeStatusLabel(status: GradeLine['status']): string {
+  if (status === 'info') return 'Info';
+  return statusLabel(status);
+}
+
 function truncate(s: string, max: number): string {
   const t = s.trim();
   if (t.length <= max) return t;
@@ -142,6 +147,7 @@ function renderResultFooterActions(result: CheckResult): string {
   return `
     <div class="fab-row fab-row--footer fab-row--split">
       <div class="footer-actions">
+        <button type="button" class="footer-action-btn" id="btn-copy-report">Copy report</button>
         <a class="footer-action-btn footer-action-btn--link" href="${mxtoolboxEmailHealthUrl(result.dmarcLookupHost)}" target="_blank" rel="noreferrer noopener">Crosscheck on MXToolbox</a>
         ${castShameBtn}
       </div>
@@ -256,6 +262,62 @@ function renderScoreRing(overall: number): string {
       </div>
     </div>
   `;
+}
+
+function statusSummary(label: string, score: FullScore['spf']): string {
+  return `${label}: ${statusLabel(score.status)} (${formatScoreTenth(score.points)}/${score.max}) - ${score.detail}`;
+}
+
+function reportLines(result: CheckResult): string[] {
+  const lines = [
+    `JayQuery report for ${result.queryHostname}`,
+    `Checked hostname: ${result.tabHostname}`,
+    `DMARC lookup: _dmarc.${result.dmarcLookupHost}`,
+    `Mode: ${result.mode === 'apex' ? 'Root domain' : 'Tab hostname'}`,
+    `Overall score: ${formatScoreTenth(result.full.overall)}/10`,
+    '',
+    statusSummary('SPF', result.full.spf),
+    statusSummary('DMARC', result.full.dmarc),
+    statusSummary('DKIM', result.full.dkim),
+  ];
+
+  if (result.dkim.selector) {
+    lines.push(`DKIM selector: ${result.dkim.selector}`);
+  }
+
+  lines.push('', 'Mail infrastructure:');
+  for (const check of result.mailInfra) {
+    lines.push(`- ${check.title}: ${statusLabel(check.status)} - ${check.summary}`);
+  }
+
+  const findings = [
+    ...filterBreakdownForCompactMode(result.spfBreakdown),
+    ...filterBreakdownForCompactMode(result.dmarcBreakdown),
+    ...filterBreakdownForCompactMode(result.dkimBreakdown),
+  ];
+  if (findings.length) {
+    lines.push('', 'Findings:');
+    for (const finding of findings) {
+      lines.push(`- ${gradeStatusLabel(finding.status)}: ${finding.text}`);
+    }
+  }
+
+  return lines;
+}
+
+async function copyReport(result: CheckResult, btn: HTMLButtonElement): Promise<void> {
+  const originalText = btn.textContent ?? 'Copy report';
+  try {
+    await navigator.clipboard.writeText(reportLines(result).join('\n'));
+    btn.textContent = 'Copied';
+  } catch (err) {
+    console.error('clipboard: failed to copy report', err);
+    btn.textContent = 'Copy failed';
+  } finally {
+    window.setTimeout(() => {
+      btn.textContent = originalText;
+    }, 1400);
+  }
 }
 
 function renderGradeBreakdown(lines: GradeLine[]): string {
@@ -563,7 +625,14 @@ function renderResult(result: CheckResult): void {
   bindModeButtons(result.mode, false);
   bindSettingsFab();
   bindCastShameModal(result);
+  bindCopyReport(result);
   bindMailInfraCopyButtons();
+}
+
+function bindCopyReport(result: CheckResult): void {
+  const btn = document.getElementById('btn-copy-report');
+  if (!(btn instanceof HTMLButtonElement)) return;
+  btn.addEventListener('click', () => void copyReport(result, btn));
 }
 
 function renderSettings(): void {

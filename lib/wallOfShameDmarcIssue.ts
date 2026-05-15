@@ -7,6 +7,7 @@ export const WALL_OF_SHAME_DMARC_ISSUES_NEW =
 export const WALL_OF_SHAME_DMARC_RECORD_URL_MAX = 3500;
 
 function truncateForUrlSnippet(s: string, max: number): string {
+  if (max <= 0) return '';
   const t = s.trim();
   if (t.length <= max) return t;
   return `${t.slice(0, max - 1)}…`;
@@ -31,6 +32,9 @@ export function inferWallOfShameDmarcIssueType(
   if (a.policy === 'none') {
     return "DMARC policy set to 'none' (p=none)";
   }
+  if (a.policy === 'quarantine' || a.policy === 'reject') {
+    return 'Not a Wall of Shame issue (valid DMARC policy)';
+  }
   return 'Malformed / invalid DMARC record';
 }
 
@@ -39,6 +43,7 @@ export function formatWallOfShameDmarcRecordForUrl(
   dmarcRecords: readonly string[],
   maxChars: number = WALL_OF_SHAME_DMARC_RECORD_URL_MAX,
 ): string {
+  if (maxChars <= 0) return '';
   if (!dmarcRecords.length) return '';
   const joined =
     dmarcRecords.length === 1

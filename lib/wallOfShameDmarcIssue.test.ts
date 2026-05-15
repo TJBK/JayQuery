@@ -56,16 +56,30 @@ describe('inferWallOfShameDmarcIssueType', () => {
     ).toBe('Malformed / invalid DMARC record');
   });
 
-  it('returns malformed for strict reject when used as catch-all for non-none weak configs', () => {
+  it('returns not a Wall of Shame issue for valid strict policies', () => {
     expect(
       inferWallOfShameDmarcIssueType(['v=DMARC1; p=reject;']),
-    ).toBe('Malformed / invalid DMARC record');
+    ).toBe('Not a Wall of Shame issue (valid DMARC policy)');
+    expect(
+      inferWallOfShameDmarcIssueType(['v=DMARC1; p=quarantine;']),
+    ).toBe('Not a Wall of Shame issue (valid DMARC policy)');
   });
 });
 
 describe('formatWallOfShameDmarcRecordForUrl', () => {
   it('returns empty string when there are no records', () => {
     expect(formatWallOfShameDmarcRecordForUrl([])).toBe('');
+  });
+
+  it('returns empty when maxChars is non-positive (no unsafe slice)', () => {
+    const rec = 'v=DMARC1; p=none;';
+    expect(formatWallOfShameDmarcRecordForUrl([rec], 0)).toBe('');
+    expect(formatWallOfShameDmarcRecordForUrl([rec], -1)).toBe('');
+  });
+
+  it('truncates to a single ellipsis character when maxChars is 1', () => {
+    expect(formatWallOfShameDmarcRecordForUrl(['v=DMARC1;'], 1)).toBe('…');
+    expect(formatWallOfShameDmarcRecordForUrl(['v=DMARC1;'], 1).length).toBe(1);
   });
 
   it('returns the single record verbatim when within limit', () => {

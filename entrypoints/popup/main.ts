@@ -125,7 +125,7 @@ function mxtoolboxEmailHealthUrl(domain: string): string {
 }
 
 const DNS_TECHNIQUE_DISCLOSURE =
-  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only. Optional MTA-STS policy fetches use the standard HTTPS policy URL; no cert inspection. DKIM probes _domainkey for null DKIM, then configured/provider/common selectors, then *._domainkey.';
+  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes _domainkey for null DKIM, then configured/provider/common selectors, then *._domainkey.';
 
 /** Opens a URL from a user gesture (e.g. modal submit) without extra extension permissions. */
 function openUrlInNewTab(url: string): void {
@@ -360,7 +360,6 @@ async function loadScopeComparison(
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
       customDkimSelectors: settings.customDkimSelectors,
-      fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
     });
     if (requestId !== compareRequestId) return;
     compareResult = nextCompareResult;
@@ -509,13 +508,10 @@ function modeChips(mode: CheckMode, showExact: boolean): string {
 }
 
 function loadingLabel(mode: CheckMode, tab: string): string {
-  const mtaStsNote = settings.fetchMtaStsPolicy
-    ? ' Includes MTA-STS policy fetch.'
-    : '';
   if (mode === 'apex') {
-    return `Checking root domain (subdomains and www stripped)…${mtaStsNote}`;
+    return 'Checking root domain (subdomains and www stripped)…';
   }
-  return `Checking exact hostname ${tab}…${mtaStsNote}`;
+  return `Checking exact hostname ${tab}…`;
 }
 
 function renderHeaderBrand(hostname: string): string {
@@ -587,7 +583,7 @@ function renderLoading(mode: CheckMode, hostname: string): void {
       </header>
       <div class="loading">
         <div class="loading__pulse"></div>
-        <p>${settings.fetchMtaStsPolicy ? 'Querying public DNS and fetching MTA-STS policy…' : 'Querying public DNS (DoH)…'}</p>
+        <p>Querying public DNS (DoH)…</p>
       </div>
   `);
   bindModeButtons(mode, true, hostname);
@@ -853,13 +849,6 @@ function renderSettings(): void {
               </span>
               <input type="checkbox" id="setting-dns-errors-fail" ${settings.treatDnsResolutionErrorsAsFailure ? 'checked' : ''} />
             </label>
-            <label class="settings-row">
-              <span class="settings-row__text">
-                <strong>Fetch MTA-STS policy file</strong> <em>(experimental)</em>
-                <span class="settings-row__hint">When on, JayQuery fetches https://mta-sts.&lt;domain&gt;/.well-known/mta-sts.txt and shows a policy card.</span>
-              </span>
-              <input type="checkbox" id="setting-mta-sts-policy" ${settings.fetchMtaStsPolicy ? 'checked' : ''} />
-            </label>
             <fieldset class="settings-fieldset settings-fieldset--in-advanced">
               <legend class="settings-fieldset__legend">DNS-over-HTTPS</legend>
               <p class="settings-fieldset__hint">Primary resolver. On fetch failure or an empty OK response JayQuery retries with the alternate public resolver (Google and Cloudflare).</p>
@@ -895,15 +884,6 @@ function renderSettings(): void {
   dnsFail?.addEventListener('change', () => {
     void persistSettingsAndRefresh({
       treatDnsResolutionErrorsAsFailure: dnsFail.checked,
-    });
-  });
-
-  const mtaStsPolicy = document.getElementById(
-    'setting-mta-sts-policy',
-  ) as HTMLInputElement | null;
-  mtaStsPolicy?.addEventListener('change', () => {
-    void persistSettingsAndRefresh({
-      fetchMtaStsPolicy: mtaStsPolicy.checked,
     });
   });
 
@@ -1044,8 +1024,7 @@ function partialNeedsDnsRefresh(partial: Partial<ExtensionSettings>): boolean {
   return (
     partial.treatDnsResolutionErrorsAsFailure !== undefined ||
     partial.dnsProvider !== undefined ||
-    partial.customDkimSelectors !== undefined ||
-    partial.fetchMtaStsPolicy !== undefined
+    partial.customDkimSelectors !== undefined
   );
 }
 
@@ -1073,7 +1052,6 @@ async function persistSettingsAndRefresh(
             settings.treatDnsResolutionErrorsAsFailure,
           dnsProvider: settings.dnsProvider,
           customDkimSelectors: settings.customDkimSelectors,
-          fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
         });
         lastResult = result;
         compareResult = null;
@@ -1137,7 +1115,6 @@ async function runCheck(
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
       customDkimSelectors: settings.customDkimSelectors,
-      fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
     });
     lastResult = result;
     lastResultUpdatesToolbar = updateToolbar;

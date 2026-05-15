@@ -30,13 +30,13 @@ Conceptually aligned with [JohnDuprey/DNSHealth](https://github.com/johnduprey/D
 
 - **SPF** and **DKIM** default to the **root (registrable) domain** (`www` and subdomains stripped via the public suffix list). Toggle **Tab hostname** in the popup to check the exact host (e.g. `www` or a subdomain).
 - **DMARC** is always read from `_dmarc` at the tab’s **organisational domain**.
-- **More DNS checks** (over DoH, same general areas as [DNSHealth](https://github.com/johnduprey/DNSHealth/) cmdlets): **MX**, **NS**, **MTA-STS** TXT at `_mta-sts`, **TLS-RPT** TXT at `_smtp._tls`, **DNSSEC** (DNSKEY + `AD`-style signal). These use the **organisational domain**, not the tab-hostname toggle. Optional MTA-STS HTTPS policy fetching can be enabled in settings.
+- **More DNS checks** (over DoH, same general areas as [DNSHealth](https://github.com/johnduprey/DNSHealth/) cmdlets): **MX**, **NS**, **MTA-STS** TXT at `_mta-sts`, **TLS-RPT** TXT at `_smtp._tls`, **DNSSEC** (DNSKEY + `AD`-style signal). These use the **organisational domain**, not the tab-hostname toggle.
 - **SPF / DMARC / DKIM** cards include **grading breakdowns** (checklist with pass / warn / fail).
 
 ## Privacy & network
 
 - **Permissions:** **`tabs`** reads each tab’s **URL** once a navigation **finishes loading** (`tabs.onUpdated`, `complete`) and refreshes the **toolbar icon** after a **reload** or when the **hostname** changes (same host with only path/query/`#` changes does not re-run). Toolbar status glyphs are **drawn with `OffscreenCanvas`** (stroke paths) directly in the extension context; no SVG decode pipeline or **`offscreen`** document. **Storage** persists settings locally.
-- **Host access (see `wxt.config.ts`):** **DNS-over-HTTPS** via `https://cloudflare-dns.com/*` and `https://dns.google/*` (primary vs fallback is user-configurable). The Entra-related probe uses `https://login.microsoftonline.com/*`. Optional MTA-STS policy fetches use `https://*/.well-known/mta-sts.txt`. **`tabs`** is what exposes `Tab.url` for the toolbar and popup. The extension **does not** inject content scripts or fetch arbitrary page URLs.
+- **Host access (see `wxt.config.ts`):** **DNS-over-HTTPS** only — `https://cloudflare-dns.com/*` and `https://dns.google/*` (primary vs fallback is user-configurable). The Entra-related probe uses `https://login.microsoftonline.com/*`. There is **no** broad `http(s)://*/*` host pattern; **`tabs`** is what exposes `Tab.url` for the toolbar and popup. The extension **does not** inject content scripts or fetch arbitrary page URLs.
 
 ## Prerequisites
 
@@ -82,7 +82,7 @@ npm test
 ## Limitations
 
 - **DKIM** tries a fixed list of common selectors (`google`, `default`, `selector1`, `selector2`, …); custom selectors may be missed.
-- **Not included** (would need broader permissions or extra APIs): HTTPS certificate checks, WHOIS.
+- **Not included** (would need broader permissions or extra APIs): MTA-STS **HTTPS** policy fetch, HTTPS certificate checks, WHOIS.
 - Resolution uses **public** DNS; split-horizon or unpublished records will not appear.
 
 ## Contributing & security

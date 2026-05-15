@@ -57,7 +57,6 @@ async function refreshToolbarIconForTab(
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
       customDkimSelectors: settings.customDkimSelectors,
-      fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
     });
     if (toolbarRefreshGenByTabId.get(tabId) !== token) {
       return;

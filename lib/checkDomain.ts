@@ -38,8 +38,6 @@ export type DnsCheckOptions = {
   dnsProvider?: DnsProvider;
   /** User-supplied DKIM selectors to try before provider and fallback selectors. */
   customDkimSelectors?: readonly string[];
-  /** Optional HTTPS fetch for MTA-STS policy file. */
-  fetchMtaStsPolicy?: boolean;
 };
 
 export type CheckResult = {
@@ -135,10 +133,7 @@ export async function runDnsCheck(
       ? orgSpfPromise
       : resolveTxtDetailed(queryHost, dnsTxt),
     resolveTxtDetailed(dmarcFqdn, dnsTxt),
-    runMailInfraChecks(orgDomain, {
-      ...dnsTxt,
-      fetchMtaStsPolicy: options?.fetchMtaStsPolicy,
-    }),
+    runMailInfraChecks(orgDomain, dnsTxt),
   ]);
   const orgSpfDetailed =
     queryHost === orgDomain ? spfDetailed : await orgSpfPromise;

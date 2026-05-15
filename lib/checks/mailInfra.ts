@@ -25,14 +25,7 @@ import type { HealthStatus } from '@/lib/score/common';
 export type MailInfraCheckOptions = Pick<DohResolveOptions, 'dnsProvider'>;
 
 export type MailInfraCheck = {
-  id:
-    | 'mx'
-    | 'ns'
-    | 'mtaSts'
-    | 'mtaStsPolicy'
-    | 'tlsRpt'
-    | 'dnssec'
-    | 'm365Tenant';
+  id: 'mx' | 'ns' | 'mtaSts' | 'tlsRpt' | 'dnssec' | 'm365Tenant';
   title: string;
   status: HealthStatus;
   summary: string;
@@ -51,12 +44,6 @@ export type MailInfraCheck = {
     dkimSelectors?: string[];
   };
 };
-
-export type MailInfraOptions = MailInfraCheckOptions & {
-  fetchMtaStsPolicy?: boolean;
-};
-
-const MTA_STS_POLICY_TIMEOUT_MS = 5000;
 
 function foldSeverity(statuses: HealthStatus[]): HealthStatus {
   if (statuses.includes('fail')) return 'fail';
@@ -245,65 +232,6 @@ async function checkMtaSts(
   };
 }
 
-async function checkMtaStsPolicy(domain: string): Promise<MailInfraCheck> {
-  const url = `https://mta-sts.${domain}/.well-known/mta-sts.txt`;
-  const controller = new AbortController();
-  const timeout = setTimeout(() => {
-    controller.abort();
-  }, MTA_STS_POLICY_TIMEOUT_MS);
-  try {
-    const res = await fetch(url, {
-      cache: 'no-store',
-      signal: controller.signal,
-    });
-    if (!res.ok) {
-      return {
-        id: 'mtaStsPolicy',
-        title: 'MTA-STS policy',
-        status: 'fail',
-        summary: `HTTP ${res.status}`,
-        lines: [`Policy fetch failed at ${url}.`],
-      };
-    }
-    const text = (await res.text()).trim();
-    const hasVersion = /^version:\s*STSv1/im.test(text);
-    const hasMode = /^mode:\s*(enforce|testing|none)$/im.test(text);
-    const hasMx = /^mx:\s*\S+/im.test(text);
-    const hasMaxAge = /^max_age:\s*\d+$/im.test(text);
-    const lines = [
-      hasVersion ? 'version: STSv1 present.' : 'Missing version: STSv1.',
-      hasMode ? 'mode is present.' : 'Missing mode.',
-      hasMx ? 'At least one mx pattern is present.' : 'Missing mx pattern.',
-      hasMaxAge ? 'max_age is present.' : 'Missing max_age.',
-    ];
-    const status: HealthStatus =
-      hasVersion && hasMode && hasMx && hasMaxAge ? 'pass' : 'warn';
-    return {
-      id: 'mtaStsPolicy',
-      title: 'MTA-STS policy',
-      status,
-      summary: status === 'pass' ? 'Policy file valid-looking' : 'Policy file issues',
-      lines,
-      raw: text,
-    };
-  } catch (err) {
-    const timedOut = err instanceof Error && err.name === 'AbortError';
-    return {
-      id: 'mtaStsPolicy',
-      title: 'MTA-STS policy',
-      status: 'fail',
-      summary: timedOut ? 'Fetch timed out' : 'Fetch failed',
-      lines: [
-        timedOut
-          ? `Policy fetch timed out after ${MTA_STS_POLICY_TIMEOUT_MS / 1000}s at ${url}.`
-          : `Could not fetch ${url}.`,
-      ],
-    };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
 async function checkTlsRpt(
   domain: string,
   dns?: MailInfraCheckOptions,
@@ -419,25 +347,18 @@ async function checkDnssec(
  */
 export async function runMailInfraChecks(
   mailDomain: string,
-  options?: MailInfraOptions,
+  options?: MailInfraCheckOptions,
 ): Promise<MailInfraCheck[]> {
   const d = mailDomain.toLowerCase();
   const dns = options;
   const mxRecs = await resolveMx(d, { dnsProvider: dns?.dnsProvider });
   const mx = checkMxFromRecords(mxRecs, d);
-  const policyPromise = options?.fetchMtaStsPolicy
-    ? checkMtaStsPolicy(d)
-    : Promise.resolve(null);
-  const [ns, mtaSts, tlsRpt, dnssec, m365Tenant, mtaStsPolicy] = await Promise.all([
+  const [ns, mtaSts, tlsRpt, dnssec, m365Tenant] = await Promise.all([
     checkNs(d, dns),
     checkMtaSts(d, dns),
     checkTlsRpt(d, dns),
     checkDnssec(d, dns),
     checkM365Tenant(d),
-    policyPromise,
   ]);
-  if (!mtaStsPolicy) {
-    return [mx, ns, mtaSts, tlsRpt, dnssec, m365Tenant];
-  }
-  return [mx, ns, mtaSts, mtaStsPolicy, tlsRpt, dnssec, m365Tenant];
+  return [mx, ns, mtaSts, tlsRpt, dnssec, m365Tenant];
 }

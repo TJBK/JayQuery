@@ -32,8 +32,6 @@ export type ExtensionSettings = {
   detailedBreakdown: boolean;
   /** Extra DKIM selectors to probe before provider and fallback selectors. */
   customDkimSelectors: string[];
-  /** When true, fetch https://mta-sts.<domain>/.well-known/mta-sts.txt. */
-  fetchMtaStsPolicy: boolean;
   /** Whether the root-vs-tab-host welcome screen has been dismissed. */
   firstRunWelcomeSeen: boolean;
 };
@@ -102,7 +100,6 @@ export const DEFAULT_SETTINGS: ExtensionSettings = {
   dnsProvider: 'google',
   detailedBreakdown: false,
   customDkimSelectors: [],
-  fetchMtaStsPolicy: false,
   firstRunWelcomeSeen: false,
 };
 
@@ -123,10 +120,6 @@ export async function loadSettings(): Promise<ExtensionSettings> {
         ? v.detailedBreakdown
         : DEFAULT_SETTINGS.detailedBreakdown,
     customDkimSelectors: normalizeCustomDkimSelectors(v?.customDkimSelectors),
-    fetchMtaStsPolicy:
-      typeof v?.fetchMtaStsPolicy === 'boolean'
-        ? v.fetchMtaStsPolicy
-        : DEFAULT_SETTINGS.fetchMtaStsPolicy,
     firstRunWelcomeSeen:
       typeof v?.firstRunWelcomeSeen === 'boolean'
         ? v.firstRunWelcomeSeen

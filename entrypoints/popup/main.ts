@@ -7,6 +7,7 @@ import {
 } from '@/lib/checkDomain';
 import { filterMailInfraLinesWhenCompact } from '@/lib/checks/mailInfra';
 import type { SpfMailProviderHint } from '@/lib/checks/mailProviderSpfHint';
+import { analyzeDmarc } from '@/lib/parse/dmarc';
 import { getActiveTabHostname } from '@/lib/tabHost';
 import {
   filterBreakdownForCompactMode,
@@ -115,26 +116,57 @@ function mxtoolboxEmailHealthUrl(domain: string): string {
   return `https://mxtoolbox.com/emailhealth/${encodeURIComponent(domain)}`;
 }
 
+/** DMARC SuperTool deep link (matches Wall of Shame issue template placeholder). */
+function mxtoolboxDmarcLookupUrl(domain: string): string {
+  return `https://mxtoolbox.com/SuperTool.aspx?action=${encodeURIComponent(`dmarc:${domain}`)}`;
+}
+
 const DNS_TECHNIQUE_DISCLOSURE =
   'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes _domainkey for null DKIM, then provider/common selectors, then *._domainkey.';
 
-const WALL_OF_SHAME_REPO = 'jkerai1/DMARC-WallOfShame';
+const WALL_OF_SHAME_NEW_ISSUE =
+  'https://github.com/jkerai1/DMARC-WallOfShame/issues/new';
 
+/** Max chars for DMARC TXT prefilled via URL (avoid GitHub URI limits). */
+const WALL_OF_SHAME_DMARC_RECORD_URL_MAX = 3500;
 
-function wallOfShameNewIssueUrl(company: string, result: CheckResult): string {
-  const domain = result.dmarcLookupHost;
-  const title = `${company} (${domain})`;
-  const bodyParts = [
-    `**Company:** ${company}`,
-    `**Domain:** ${domain}`,
-  ];
-  if (result.queryHostname !== result.dmarcLookupHost) {
-    bodyParts.push(`**Checked hostname:** ${result.queryHostname}`);
+function wallOfShameDmarcIssueType(result: CheckResult): string {
+  const a = analyzeDmarc(result.dmarcRecords);
+  if (a.multipleRecords) {
+    return 'Malformed / invalid DMARC record';
   }
-  bodyParts.push('', '_Submitted via JayQuery browser extension._');
-  const body = bodyParts.join('\n');
-  const params = new URLSearchParams({ title, body });
-  return `https://github.com/${WALL_OF_SHAME_REPO}/issues/new?${params}`;
+  if (!a.present) {
+    return 'No DMARC record (missing)';
+  }
+  if (a.policy === 'none') {
+    return "DMARC policy set to 'none' (p=none)";
+  }
+  return 'Malformed / invalid DMARC record';
+}
+
+function wallOfShameDmarcRecordSnippet(result: CheckResult): string {
+  if (!result.dmarcRecords.length) return '';
+  const joined =
+    result.dmarcRecords.length === 1
+      ? result.dmarcRecords[0]
+      : result.dmarcRecords.join('\n---\n');
+  return truncate(joined, WALL_OF_SHAME_DMARC_RECORD_URL_MAX);
+}
+
+function wallOfShameNewIssueUrl(orgName: string, result: CheckResult): string {
+  const domain = result.dmarcLookupHost;
+  const params = new URLSearchParams();
+  params.set('template', 'dmarc_submission.yml');
+  params.set('title', `[DMARC] ${domain}`);
+  params.set('org_name', orgName);
+  params.set('domain', domain);
+  params.set('issue_type', wallOfShameDmarcIssueType(result));
+  const dmarcSnippet = wallOfShameDmarcRecordSnippet(result);
+  if (dmarcSnippet) {
+    params.set('dmarc_record', dmarcSnippet);
+  }
+  params.set('lookup_url', mxtoolboxDmarcLookupUrl(domain));
+  return `${WALL_OF_SHAME_NEW_ISSUE}?${params}`;
 }
 
 /** Opens a URL from a user gesture (e.g. modal submit) without extra extension permissions. */
@@ -174,10 +206,10 @@ function renderCastShameModal(result: CheckResult): string {
       <div class="cast-shame-modal__backdrop" id="cast-shame-backdrop" aria-hidden="true"></div>
       <div class="cast-shame-modal__panel" role="dialog" aria-modal="true" aria-labelledby="cast-shame-heading">
         <h2 class="cast-shame-modal__title" id="cast-shame-heading">Report DMARC issue</h2>
-        <p class="cast-shame-modal__lede">Please submit the company name for the DMARC issue.</p>
-        <label class="cast-shame-modal__label" for="cast-shame-company">Company name</label>
+        <p class="cast-shame-modal__lede">Enter the organisation name for the DMARC submission form.</p>
+        <label class="cast-shame-modal__label" for="cast-shame-company">Organisation name</label>
         <input type="text" class="cast-shame-modal__input" id="cast-shame-company" autocomplete="organization" maxlength="160" placeholder="e.g. Acme Ltd" />
-        <p class="cast-shame-modal__error" id="cast-shame-error" hidden role="alert">Enter a company name.</p>
+        <p class="cast-shame-modal__error" id="cast-shame-error" hidden role="alert">Enter an organisation name.</p>
         <div class="cast-shame-modal__actions">
           <button type="button" class="cast-shame-modal__btn cast-shame-modal__btn--ghost" id="cast-shame-cancel">Cancel</button>
           <button type="button" class="cast-shame-modal__btn cast-shame-modal__btn--primary" id="cast-shame-submit">Continue to GitHub</button>

@@ -651,7 +651,7 @@ body {
 
 .welcome__btn:hover {
   border-color: rgba(91, 140, 255, 0.45);
-  background: #222936;
+  background: var(--surface);
 }
 
 .welcome__btn:focus-visible {

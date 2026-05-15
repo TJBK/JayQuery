@@ -719,12 +719,12 @@ function bindSettingsFab(): void {
 
 async function dismissWelcomeAndRun(mode: CheckMode): Promise<void> {
   settings = { ...settings, firstRunWelcomeSeen: true };
-  currentView = 'main';
   try {
     await saveSettings(settings);
-  } catch {
-    // Non-blocking: proceed for this session even if persistence fails.
+  } catch (err) {
+    console.error('settings: failed to save first-run welcome state', err);
   }
+  currentView = 'main';
   await runCheck(mode);
 }
 

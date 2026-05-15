@@ -56,6 +56,8 @@ export type MailInfraOptions = MailInfraCheckOptions & {
   fetchMtaStsPolicy?: boolean;
 };
 
+const MTA_STS_POLICY_TIMEOUT_MS = 5000;
+
 function foldSeverity(statuses: HealthStatus[]): HealthStatus {
   if (statuses.includes('fail')) return 'fail';
   if (statuses.includes('warn')) return 'warn';
@@ -245,8 +247,15 @@ async function checkMtaSts(
 
 async function checkMtaStsPolicy(domain: string): Promise<MailInfraCheck> {
   const url = `https://mta-sts.${domain}/.well-known/mta-sts.txt`;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => {
+    controller.abort();
+  }, MTA_STS_POLICY_TIMEOUT_MS);
   try {
-    const res = await fetch(url, { cache: 'no-store' });
+    const res = await fetch(url, {
+      cache: 'no-store',
+      signal: controller.signal,
+    });
     if (!res.ok) {
       return {
         id: 'mtaStsPolicy',
@@ -277,14 +286,21 @@ async function checkMtaStsPolicy(domain: string): Promise<MailInfraCheck> {
       lines,
       raw: text,
     };
-  } catch {
+  } catch (err) {
+    const timedOut = err instanceof Error && err.name === 'AbortError';
     return {
       id: 'mtaStsPolicy',
       title: 'MTA-STS policy',
       status: 'fail',
-      summary: 'Fetch failed',
-      lines: [`Could not fetch ${url}.`],
+      summary: timedOut ? 'Fetch timed out' : 'Fetch failed',
+      lines: [
+        timedOut
+          ? `Policy fetch timed out after ${MTA_STS_POLICY_TIMEOUT_MS / 1000}s at ${url}.`
+          : `Could not fetch ${url}.`,
+      ],
     };
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
@@ -409,16 +425,19 @@ export async function runMailInfraChecks(
   const dns = options;
   const mxRecs = await resolveMx(d, { dnsProvider: dns?.dnsProvider });
   const mx = checkMxFromRecords(mxRecs, d);
-  const [ns, mtaSts, tlsRpt, dnssec, m365Tenant] = await Promise.all([
+  const policyPromise = options?.fetchMtaStsPolicy
+    ? checkMtaStsPolicy(d)
+    : Promise.resolve(null);
+  const [ns, mtaSts, tlsRpt, dnssec, m365Tenant, mtaStsPolicy] = await Promise.all([
     checkNs(d, dns),
     checkMtaSts(d, dns),
     checkTlsRpt(d, dns),
     checkDnssec(d, dns),
     checkM365Tenant(d),
+    policyPromise,
   ]);
-  if (!options?.fetchMtaStsPolicy) {
+  if (!mtaStsPolicy) {
     return [mx, ns, mtaSts, tlsRpt, dnssec, m365Tenant];
   }
-  const mtaStsPolicy = await checkMtaStsPolicy(d);
   return [mx, ns, mtaSts, mtaStsPolicy, tlsRpt, dnssec, m365Tenant];
 }

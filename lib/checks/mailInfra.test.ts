@@ -29,14 +29,11 @@ describe('filterMailInfraLinesWhenCompact', () => {
 
 describe('runMailInfraChecks', () => {
   afterEach(() => {
+    vi.useRealTimers();
     vi.restoreAllMocks();
   });
 
-  it('does not fetch MTA-STS policy unless enabled', async () => {
-    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation(async () => {
-      throw new Error('unexpected fetch');
-    });
-
+  function mockBaseChecks(): void {
     vi.spyOn(dohJson, 'resolveMx').mockResolvedValue([]);
     vi.spyOn(dohJson, 'resolveNs').mockResolvedValue([]);
     vi.spyOn(queryTxt, 'resolveTxt').mockResolvedValue([]);
@@ -44,7 +41,7 @@ describe('runMailInfraChecks', () => {
       status: dohJson.RCODE.NOERROR,
       ad: false,
       answers: [],
-    } as any);
+    });
     vi.spyOn(m365, 'checkM365Tenant').mockResolvedValue({
       id: 'm365Tenant',
       title: 'Microsoft 365',
@@ -52,6 +49,13 @@ describe('runMailInfraChecks', () => {
       summary: 'No tenant probe',
       lines: [],
     });
+  }
+
+  it('does not fetch MTA-STS policy unless enabled', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation(async () => {
+      throw new Error('unexpected fetch');
+    });
+    mockBaseChecks();
 
     await runMailInfraChecks('example.com', {
       fetchMtaStsPolicy: false,
@@ -59,5 +63,30 @@ describe('runMailInfraChecks', () => {
 
     expect(fetchSpy).not.toHaveBeenCalled();
     fetchSpy.mockRestore();
+  });
+
+  it('fails MTA-STS policy when the fetch times out', async () => {
+    vi.useFakeTimers();
+    mockBaseChecks();
+    vi.spyOn(globalThis, 'fetch').mockImplementation((async (_url, init) => {
+      const signal = init?.signal;
+      return new Promise((_resolve, reject) => {
+        signal?.addEventListener('abort', () => {
+          const err = new Error('aborted');
+          err.name = 'AbortError';
+          reject(err);
+        });
+      });
+    }) as typeof fetch);
+
+    const checksPromise = runMailInfraChecks('example.com', {
+      fetchMtaStsPolicy: true,
+    });
+    await vi.advanceTimersByTimeAsync(5000);
+
+    const checks = await checksPromise;
+    const policy = checks.find((c) => c.id === 'mtaStsPolicy');
+    expect(policy?.status).toBe('fail');
+    expect(policy?.summary).toBe('Fetch timed out');
   });
 });

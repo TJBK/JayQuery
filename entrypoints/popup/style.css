@@ -829,7 +829,7 @@ body {
 .scope-compare__row span {
   min-width: 0;
   padding: 4px 0;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .scope-compare__row--changed span {

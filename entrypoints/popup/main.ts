@@ -39,6 +39,8 @@ let currentView: 'welcome' | 'main' | 'settings' = 'main';
 let lastMode: CheckMode = 'apex';
 let lastResult: CheckResult | null = null;
 let compareResult: CheckResult | null = null;
+let lastResultUpdatesToolbar = true;
+let compareRequestId = 0;
 
 const COG_SVG = `<svg class="fab__icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.48.5.87.97 1.05V10a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>`;
 
@@ -348,19 +350,23 @@ async function loadScopeComparison(
   btn: HTMLButtonElement,
 ): Promise<void> {
   const otherMode: CheckMode = result.mode === 'apex' ? 'exact' : 'apex';
+  const requestId = ++compareRequestId;
   const originalText = btn.textContent ?? 'Compare root/tab';
   btn.disabled = true;
   btn.textContent = 'Comparing';
   try {
-    compareResult = await runDnsCheck(result.tabHostname, otherMode, {
+    const nextCompareResult = await runDnsCheck(result.tabHostname, otherMode, {
       treatDnsResolutionErrorsAsFailure:
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
       customDkimSelectors: settings.customDkimSelectors,
       fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
     });
+    if (requestId !== compareRequestId) return;
+    compareResult = nextCompareResult;
     renderResult(result);
   } catch (err) {
+    if (requestId !== compareRequestId) return;
     console.error('compare: failed to compare root and tab hostname', err);
     btn.textContent = 'Compare failed';
     btn.disabled = false;
@@ -567,24 +573,24 @@ function renderWelcome(): void {
   bindSettingsFab();
 }
 
-function renderLoading(mode: CheckMode): void {
-  const targets = tabHostname ? resolveCheckTargets(tabHostname, mode) : null;
-  const rootTargets = tabHostname ? resolveCheckTargets(tabHostname, 'apex') : null;
+function renderLoading(mode: CheckMode, hostname: string): void {
+  const targets = hostname ? resolveCheckTargets(hostname, mode) : null;
+  const rootTargets = hostname ? resolveCheckTargets(hostname, 'apex') : null;
   const headerHost = targets?.queryHost ?? '';
   const showExact = rootTargets ? rootTargets.queryHost !== rootTargets.tab : true;
   root.innerHTML = shellWithFabFooterOnly(`
       <header class="header">
         ${headerHost ? renderHeaderBrand(headerHost) : '<h1 class="header__title header__title--solo">JayQuery</h1>'}
-        ${renderManualLookupForm(headerHost || tabHostname)}
+        ${renderManualLookupForm(headerHost || hostname)}
         ${modeChips(mode, showExact)}
-        <p class="header__hint">${escapeHtml(loadingLabel(mode, tabHostname))}</p>
+        <p class="header__hint">${escapeHtml(loadingLabel(mode, hostname))}</p>
       </header>
       <div class="loading">
         <div class="loading__pulse"></div>
         <p>${settings.fetchMtaStsPolicy ? 'Querying public DNS and fetching MTA-STS policy…' : 'Querying public DNS (DoH)…'}</p>
       </div>
   `);
-  bindModeButtons(mode, true);
+  bindModeButtons(mode, true, hostname);
   bindManualLookupForm();
   bindSettingsFab();
 }
@@ -594,7 +600,7 @@ function renderError(message: string): void {
   root.innerHTML = shellWithFabFooterOnly(`
       <header class="header">
         ${tabHostname ? renderHeaderBrand(tabHostname) : '<h1 class="header__title header__title--solo">JayQuery</h1>'}
-        ${tabHostname ? renderManualLookupForm(tabHostname) : ''}
+        ${renderManualLookupForm(tabHostname)}
       </header>
       <div class="panel panel--warn">
         <p class="panel__text">${escapeHtml(message)}</p>
@@ -767,7 +773,7 @@ function renderResult(result: CheckResult): void {
       ${castShameModal}
     </div>
   `;
-  bindModeButtons(result.mode, false);
+  bindModeButtons(result.mode, false, result.tabHostname, lastResultUpdatesToolbar);
   bindManualLookupForm();
   bindSettingsFab();
   bindCastShameModal(result);
@@ -1007,11 +1013,10 @@ function bindManualLookupForm(): void {
       input.focus();
       return;
     }
-    tabHostname = host;
     lastResult = null;
     compareResult = null;
     currentView = 'main';
-    void runCheck('apex');
+    void runCheck('apex', host, false);
   });
 }
 
@@ -1062,7 +1067,8 @@ async function persistSettingsAndRefresh(
   if (currentView === 'settings') {
     if (dnsRefresh) {
       try {
-        const result = await runDnsCheck(tabHostname, lastMode, {
+        const refreshHost = lastResult?.tabHostname ?? tabHostname;
+        const result = await runDnsCheck(refreshHost, lastMode, {
           treatDnsResolutionErrorsAsFailure:
             settings.treatDnsResolutionErrorsAsFailure,
           dnsProvider: settings.dnsProvider,
@@ -1070,7 +1076,11 @@ async function persistSettingsAndRefresh(
           fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
         });
         lastResult = result;
-        await syncToolbarIconFromResult(result);
+        compareResult = null;
+        compareRequestId++;
+        if (lastResultUpdatesToolbar) {
+          await syncToolbarIconFromResult(result);
+        }
       } catch {
         /* keep prior lastResult */
       }
@@ -1090,28 +1100,39 @@ async function persistSettingsAndRefresh(
   }
 }
 
-function bindModeButtons(mode: CheckMode, loading: boolean): void {
+function bindModeButtons(
+  mode: CheckMode,
+  loading: boolean,
+  hostname: string,
+  updateToolbar = true,
+): void {
   const apex = document.getElementById('btn-mode-apex');
   const exact = document.getElementById('btn-mode-exact');
   if (loading) {
-    apex?.addEventListener('click', () => void runCheck('apex'));
-    exact?.addEventListener('click', () => void runCheck('exact'));
+    apex?.addEventListener('click', () => void runCheck('apex', hostname, updateToolbar));
+    exact?.addEventListener('click', () => void runCheck('exact', hostname, updateToolbar));
     return;
   }
   apex?.addEventListener('click', () => {
-    if (mode !== 'apex') void runCheck('apex');
+    if (mode !== 'apex') void runCheck('apex', hostname, updateToolbar);
   });
   exact?.addEventListener('click', () => {
-    if (mode !== 'exact') void runCheck('exact');
+    if (mode !== 'exact') void runCheck('exact', hostname, updateToolbar);
   });
 }
 
-async function runCheck(mode: CheckMode): Promise<void> {
+async function runCheck(
+  mode: CheckMode,
+  hostname = tabHostname,
+  updateToolbar = true,
+): Promise<void> {
   lastMode = mode;
   compareResult = null;
-  renderLoading(mode);
+  compareRequestId++;
+  lastResultUpdatesToolbar = updateToolbar;
+  renderLoading(mode, hostname);
   try {
-    const result = await runDnsCheck(tabHostname, mode, {
+    const result = await runDnsCheck(hostname, mode, {
       treatDnsResolutionErrorsAsFailure:
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
@@ -1119,7 +1140,10 @@ async function runCheck(mode: CheckMode): Promise<void> {
       fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
     });
     lastResult = result;
-    await syncToolbarIconFromResult(result);
+    lastResultUpdatesToolbar = updateToolbar;
+    if (updateToolbar) {
+      await syncToolbarIconFromResult(result);
+    }
     if (currentView === 'settings') {
       return;
     }

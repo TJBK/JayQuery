@@ -437,6 +437,18 @@ function renderHeaderBrand(hostname: string): string {
   `;
 }
 
+function renderManualLookupForm(hostname: string): string {
+  return `
+    <form class="manual-lookup" id="manual-lookup-form">
+      <label class="manual-lookup__label" for="manual-lookup-domain">Check domain</label>
+      <div class="manual-lookup__row">
+        <input class="manual-lookup__input" id="manual-lookup-domain" value="${escapeHtml(hostname)}" autocomplete="off" spellcheck="false" />
+        <button type="submit" class="manual-lookup__btn">Check</button>
+      </div>
+    </form>
+  `;
+}
+
 function renderWelcome(): void {
   const targets = resolveCheckTargets(tabHostname, 'apex');
   const rootHost = targets.queryHost;
@@ -451,6 +463,7 @@ function renderWelcome(): void {
   root.innerHTML = shellWithFabFooterOnly(`
       <header class="header">
         ${renderHeaderBrand(rootHost)}
+        ${renderManualLookupForm(rootHost)}
       </header>
       <section class="welcome" aria-labelledby="welcome-title">
         <p class="welcome__kicker">First run</p>
@@ -465,6 +478,7 @@ function renderWelcome(): void {
       </section>
   `);
   bindWelcomeActions();
+  bindManualLookupForm();
   bindSettingsFab();
 }
 
@@ -476,6 +490,7 @@ function renderLoading(mode: CheckMode): void {
   root.innerHTML = shellWithFabFooterOnly(`
       <header class="header">
         ${headerHost ? renderHeaderBrand(headerHost) : '<h1 class="header__title header__title--solo">JayQuery</h1>'}
+        ${renderManualLookupForm(headerHost || tabHostname)}
         ${modeChips(mode, showExact)}
         <p class="header__hint">${escapeHtml(loadingLabel(mode, tabHostname))}</p>
       </header>
@@ -485,6 +500,7 @@ function renderLoading(mode: CheckMode): void {
       </div>
   `);
   bindModeButtons(mode, true);
+  bindManualLookupForm();
   bindSettingsFab();
 }
 
@@ -493,11 +509,13 @@ function renderError(message: string): void {
   root.innerHTML = shellWithFabFooterOnly(`
       <header class="header">
         ${tabHostname ? renderHeaderBrand(tabHostname) : '<h1 class="header__title header__title--solo">JayQuery</h1>'}
+        ${tabHostname ? renderManualLookupForm(tabHostname) : ''}
       </header>
       <div class="panel panel--warn">
         <p class="panel__text">${escapeHtml(message)}</p>
       </div>
   `);
+  bindManualLookupForm();
   bindSettingsFab();
 }
 
@@ -565,6 +583,7 @@ function renderResult(result: CheckResult): void {
     <div class="shell shell--with-fab">
       <header class="header">
         ${renderHeaderBrand(result.queryHostname)}
+        ${renderManualLookupForm(result.queryHostname)}
         ${modeChips(result.mode, showExact)}
       </header>
 
@@ -623,6 +642,7 @@ function renderResult(result: CheckResult): void {
     </div>
   `;
   bindModeButtons(result.mode, false);
+  bindManualLookupForm();
   bindSettingsFab();
   bindCastShameModal(result);
   bindCopyReport(result);
@@ -771,6 +791,47 @@ function bindSettingsFab(): void {
   document.getElementById('btn-open-settings')?.addEventListener('click', () => {
     currentView = 'settings';
     renderSettings();
+  });
+}
+
+function hostnameFromManualInput(raw: string): string | null {
+  const trimmed = raw.trim();
+  if (!trimmed) return null;
+  const withScheme = /^[a-z][a-z0-9+.-]*:\/\//i.test(trimmed)
+    ? trimmed
+    : `https://${trimmed}`;
+  try {
+    const u = new URL(withScheme);
+    const host = u.hostname.trim().toLowerCase().replace(/\.+$/, '');
+    return host || null;
+  } catch {
+    return trimmed
+      .toLowerCase()
+      .replace(/^https?:\/\//, '')
+      .split('/')[0]
+      .split(':')[0]
+      .trim()
+      .replace(/\.+$/, '') || null;
+  }
+}
+
+function bindManualLookupForm(): void {
+  const form = document.getElementById('manual-lookup-form');
+  const input = document.getElementById('manual-lookup-domain');
+  if (!(form instanceof HTMLFormElement) || !(input instanceof HTMLInputElement)) {
+    return;
+  }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const host = hostnameFromManualInput(input.value);
+    if (!host) {
+      input.focus();
+      return;
+    }
+    tabHostname = host;
+    lastResult = null;
+    currentView = 'main';
+    void runCheck('apex');
   });
 }
 

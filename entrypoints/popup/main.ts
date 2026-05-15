@@ -849,7 +849,7 @@ function renderSettings(): void {
             </label>
             <label class="settings-row">
               <span class="settings-row__text">
-                <strong>Fetch MTA-STS policy file</strong>
+                <strong>Fetch MTA-STS policy file</strong> <em>(experimental)</em>
                 <span class="settings-row__hint">When on, JayQuery fetches https://mta-sts.&lt;domain&gt;/.well-known/mta-sts.txt and shows a policy card.</span>
               </span>
               <input type="checkbox" id="setting-mta-sts-policy" ${settings.fetchMtaStsPolicy ? 'checked' : ''} />

@@ -99,7 +99,7 @@ export function resolveCheckTargets(
   tabHostname: string,
   mode: CheckMode,
 ): { tab: string; orgDomain: string; queryHost: string } {
-  const tab = tabHostname.trim().toLowerCase();
+  const tab = tabHostname.trim().toLowerCase().replace(/\.+$/, '');
   const orgDomain = getDomain(tab, { detectIp: false }) ?? tab;
   const queryHost = mode === 'apex' ? orgDomain : tab;
   return { tab, orgDomain, queryHost };

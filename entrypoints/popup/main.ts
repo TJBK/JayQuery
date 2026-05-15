@@ -503,10 +503,13 @@ function modeChips(mode: CheckMode, showExact: boolean): string {
 }
 
 function loadingLabel(mode: CheckMode, tab: string): string {
+  const mtaStsNote = settings.fetchMtaStsPolicy
+    ? ' Includes MTA-STS policy fetch.'
+    : '';
   if (mode === 'apex') {
-    return 'Checking root domain (subdomains and www stripped)…';
+    return `Checking root domain (subdomains and www stripped)…${mtaStsNote}`;
   }
-  return `Checking exact hostname ${tab}…`;
+  return `Checking exact hostname ${tab}…${mtaStsNote}`;
 }
 
 function renderHeaderBrand(hostname: string): string {
@@ -578,7 +581,7 @@ function renderLoading(mode: CheckMode): void {
       </header>
       <div class="loading">
         <div class="loading__pulse"></div>
-        <p>Querying public DNS (DoH)…</p>
+        <p>${settings.fetchMtaStsPolicy ? 'Querying public DNS and fetching MTA-STS policy…' : 'Querying public DNS (DoH)…'}</p>
       </div>
   `);
   bindModeButtons(mode, true);

@@ -7,8 +7,8 @@ import {
 } from '@/lib/checkDomain';
 import { filterMailInfraLinesWhenCompact } from '@/lib/checks/mailInfra';
 import type { SpfMailProviderHint } from '@/lib/checks/mailProviderSpfHint';
-import { analyzeDmarc } from '@/lib/parse/dmarc';
 import { getActiveTabHostname } from '@/lib/tabHost';
+import { buildWallOfShameDmarcIssueUrl } from '@/lib/wallOfShameDmarcIssue';
 import {
   filterBreakdownForCompactMode,
   type FullScore,
@@ -116,58 +116,8 @@ function mxtoolboxEmailHealthUrl(domain: string): string {
   return `https://mxtoolbox.com/emailhealth/${encodeURIComponent(domain)}`;
 }
 
-/** DMARC SuperTool deep link (matches Wall of Shame issue template placeholder). */
-function mxtoolboxDmarcLookupUrl(domain: string): string {
-  return `https://mxtoolbox.com/SuperTool.aspx?action=${encodeURIComponent(`dmarc:${domain}`)}`;
-}
-
 const DNS_TECHNIQUE_DISCLOSURE =
   'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes _domainkey for null DKIM, then provider/common selectors, then *._domainkey.';
-
-const WALL_OF_SHAME_NEW_ISSUE =
-  'https://github.com/jkerai1/DMARC-WallOfShame/issues/new';
-
-/** Max chars for DMARC TXT prefilled via URL (avoid GitHub URI limits). */
-const WALL_OF_SHAME_DMARC_RECORD_URL_MAX = 3500;
-
-function wallOfShameDmarcIssueType(result: CheckResult): string {
-  const a = analyzeDmarc(result.dmarcRecords);
-  if (a.multipleRecords) {
-    return 'Malformed / invalid DMARC record';
-  }
-  if (!a.present) {
-    return 'No DMARC record (missing)';
-  }
-  if (a.policy === 'none') {
-    return "DMARC policy set to 'none' (p=none)";
-  }
-  return 'Malformed / invalid DMARC record';
-}
-
-function wallOfShameDmarcRecordSnippet(result: CheckResult): string {
-  if (!result.dmarcRecords.length) return '';
-  const joined =
-    result.dmarcRecords.length === 1
-      ? result.dmarcRecords[0]
-      : result.dmarcRecords.join('\n---\n');
-  return truncate(joined, WALL_OF_SHAME_DMARC_RECORD_URL_MAX);
-}
-
-function wallOfShameNewIssueUrl(orgName: string, result: CheckResult): string {
-  const domain = result.dmarcLookupHost;
-  const params = new URLSearchParams();
-  params.set('template', 'dmarc_submission.yml');
-  params.set('title', `[DMARC] ${domain}`);
-  params.set('org_name', orgName);
-  params.set('domain', domain);
-  params.set('issue_type', wallOfShameDmarcIssueType(result));
-  const dmarcSnippet = wallOfShameDmarcRecordSnippet(result);
-  if (dmarcSnippet) {
-    params.set('dmarc_record', dmarcSnippet);
-  }
-  params.set('lookup_url', mxtoolboxDmarcLookupUrl(domain));
-  return `${WALL_OF_SHAME_NEW_ISSUE}?${params}`;
-}
 
 /** Opens a URL from a user gesture (e.g. modal submit) without extra extension permissions. */
 function openUrlInNewTab(url: string): void {
@@ -270,7 +220,13 @@ function bindCastShameModal(result: CheckResult): void {
       shameInput.focus();
       return;
     }
-    openUrlInNewTab(wallOfShameNewIssueUrl(trimmed, result));
+    openUrlInNewTab(
+      buildWallOfShameDmarcIssueUrl(
+        trimmed,
+        result.dmarcLookupHost,
+        result.dmarcRecords,
+      ),
+    );
     closeModal();
   });
 

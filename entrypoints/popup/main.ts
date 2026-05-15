@@ -38,6 +38,7 @@ let settings: ExtensionSettings = { ...DEFAULT_SETTINGS };
 let currentView: 'welcome' | 'main' | 'settings' = 'main';
 let lastMode: CheckMode = 'apex';
 let lastResult: CheckResult | null = null;
+let compareResult: CheckResult | null = null;
 
 const COG_SVG = `<svg class="fab__icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.48.5.87.97 1.05V10a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>`;
 
@@ -140,6 +141,11 @@ function hasReportableDmarcIssue(result: CheckResult): boolean {
 }
 
 function renderResultFooterActions(result: CheckResult): string {
+  const rootTargets = resolveCheckTargets(result.tabHostname, 'apex');
+  const showCompare = rootTargets.queryHost !== rootTargets.tab;
+  const compareBtn = showCompare
+    ? `<button type="button" class="footer-action-btn" id="btn-compare-scope">Compare root/tab</button>`
+    : '';
   const showCastShame = hasReportableDmarcIssue(result);
   const castShameBtn = showCastShame
     ? `<button type="button" class="footer-action-btn footer-action-btn--shame" id="btn-cast-shame">Report DMARC issue</button>`
@@ -148,6 +154,7 @@ function renderResultFooterActions(result: CheckResult): string {
     <div class="fab-row fab-row--footer fab-row--split">
       <div class="footer-actions">
         <button type="button" class="footer-action-btn" id="btn-copy-report">Copy report</button>
+        ${compareBtn}
         <a class="footer-action-btn footer-action-btn--link" href="${mxtoolboxEmailHealthUrl(result.dmarcLookupHost)}" target="_blank" rel="noreferrer noopener">Crosscheck on MXToolbox</a>
         ${castShameBtn}
       </div>
@@ -314,6 +321,32 @@ async function copyReport(result: CheckResult, btn: HTMLButtonElement): Promise<
     console.error('clipboard: failed to copy report', err);
     btn.textContent = 'Copy failed';
   } finally {
+    window.setTimeout(() => {
+      btn.textContent = originalText;
+    }, 1400);
+  }
+}
+
+async function loadScopeComparison(
+  result: CheckResult,
+  btn: HTMLButtonElement,
+): Promise<void> {
+  const otherMode: CheckMode = result.mode === 'apex' ? 'exact' : 'apex';
+  const originalText = btn.textContent ?? 'Compare root/tab';
+  btn.disabled = true;
+  btn.textContent = 'Comparing';
+  try {
+    compareResult = await runDnsCheck(result.tabHostname, otherMode, {
+      treatDnsResolutionErrorsAsFailure:
+        settings.treatDnsResolutionErrorsAsFailure,
+      dnsProvider: settings.dnsProvider,
+      customDkimSelectors: settings.customDkimSelectors,
+    });
+    renderResult(result);
+  } catch (err) {
+    console.error('compare: failed to compare root and tab hostname', err);
+    btn.textContent = 'Compare failed';
+    btn.disabled = false;
     window.setTimeout(() => {
       btn.textContent = originalText;
     }, 1400);
@@ -592,6 +625,39 @@ function renderMailInfraCard(
   `;
 }
 
+function renderComparisonValue(label: string, current: FullScore['spf'], other: FullScore['spf']): string {
+  const changed = current.status !== other.status || current.points !== other.points;
+  return `
+    <div class="scope-compare__row ${changed ? 'scope-compare__row--changed' : ''}">
+      <span>${label}</span>
+      <span>${statusLabel(current.status)} ${formatScoreTenth(current.points)}/${current.max}</span>
+      <span>${statusLabel(other.status)} ${formatScoreTenth(other.points)}/${other.max}</span>
+    </div>
+  `;
+}
+
+function renderScopeComparison(current: CheckResult, other: CheckResult | null): string {
+  if (!other) return '';
+  return `
+    <section class="scope-compare" aria-label="Root domain versus tab hostname comparison">
+      <div class="scope-compare__head">
+        <h2>Root vs tab hostname</h2>
+        <span>${current.mode === 'apex' ? 'Current: root' : 'Current: tab'}</span>
+      </div>
+      <div class="scope-compare__grid scope-compare__grid--head">
+        <span>Check</span>
+        <span>${escapeHtml(current.queryHostname)}</span>
+        <span>${escapeHtml(other.queryHostname)}</span>
+      </div>
+      <div class="scope-compare__grid">
+        ${renderComparisonValue('SPF', current.full.spf, other.full.spf)}
+        ${renderComparisonValue('DMARC', current.full.dmarc, other.full.dmarc)}
+        ${renderComparisonValue('DKIM', current.full.dkim, other.full.dkim)}
+      </div>
+    </section>
+  `;
+}
+
 function dmarcHint(result: CheckResult): string {
   return `DMARC is always read from _dmarc.${result.dmarcLookupHost} (organisational domain of the tab). SPF and DKIM use ${result.queryHostname}.`;
 }
@@ -624,6 +690,8 @@ function renderResult(result: CheckResult): void {
         ${renderScoreRing(full.overall)}
         <p class="hero__label">SPF + DMARC + DKIM (max 10)</p>
       </section>
+
+      ${renderScopeComparison(result, compareResult)}
 
       <div class="cards">
         ${renderProtocolCard(
@@ -682,6 +750,7 @@ function renderResult(result: CheckResult): void {
   bindSettingsFab();
   bindCastShameModal(result);
   bindCopyReport(result);
+  bindScopeCompare(result);
   bindMailInfraCopyButtons();
 }
 
@@ -689,6 +758,12 @@ function bindCopyReport(result: CheckResult): void {
   const btn = document.getElementById('btn-copy-report');
   if (!(btn instanceof HTMLButtonElement)) return;
   btn.addEventListener('click', () => void copyReport(result, btn));
+}
+
+function bindScopeCompare(result: CheckResult): void {
+  const btn = document.getElementById('btn-compare-scope');
+  if (!(btn instanceof HTMLButtonElement)) return;
+  btn.addEventListener('click', () => void loadScopeComparison(result, btn));
 }
 
 function renderSettings(): void {
@@ -896,6 +971,7 @@ function bindManualLookupForm(): void {
     }
     tabHostname = host;
     lastResult = null;
+    compareResult = null;
     currentView = 'main';
     void runCheck('apex');
   });
@@ -992,6 +1068,7 @@ function bindModeButtons(mode: CheckMode, loading: boolean): void {
 
 async function runCheck(mode: CheckMode): Promise<void> {
   lastMode = mode;
+  compareResult = null;
   renderLoading(mode);
   try {
     const result = await runDnsCheck(tabHostname, mode, {

@@ -118,6 +118,11 @@ body {
   background: var(--surface);
 }
 
+.footer-action-btn:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
 .footer-action-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -774,6 +779,61 @@ body {
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.scope-compare {
+  margin: 14px 0 2px;
+  padding: 12px;
+  border: 1px solid rgba(91, 140, 255, 0.22);
+  border-radius: 10px;
+  background: rgba(91, 140, 255, 0.08);
+}
+
+.scope-compare__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.scope-compare__head h2 {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.scope-compare__head span {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.scope-compare__grid {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 1fr;
+  gap: 5px;
+  font-size: 0.68rem;
+  color: #a8afbf;
+}
+
+.scope-compare__grid--head {
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.scope-compare__row {
+  display: contents;
+}
+
+.scope-compare__row span {
+  min-width: 0;
+  padding: 4px 0;
+  word-break: break-word;
+}
+
+.scope-compare__row--changed span {
+  color: var(--text);
 }
 
 .score-ring {

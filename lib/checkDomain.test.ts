@@ -19,4 +19,10 @@ describe('resolveCheckTargets', () => {
     const r = resolveCheckTargets('www.EXAMPLE.co.uk', 'apex');
     expect(r.queryHost).toBe('example.co.uk');
   });
+
+  it('normalises trailing dots before comparing targets', () => {
+    const r = resolveCheckTargets('github.com.', 'apex');
+    expect(r.tab).toBe('github.com');
+    expect(r.queryHost).toBe('github.com');
+  });
 });

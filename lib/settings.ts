@@ -30,6 +30,8 @@ export type ExtensionSettings = {
    * When false, only actionable lines (warn, fail, missing) are listed for compact results.
    */
   detailedBreakdown: boolean;
+  /** Whether the root-vs-tab-host welcome screen has been dismissed. */
+  firstRunWelcomeSeen: boolean;
 };
 
 const STORAGE_KEY = 'jayquerySettings';
@@ -79,6 +81,7 @@ export const DEFAULT_SETTINGS: ExtensionSettings = {
   toolbarIconDriver: 'combined',
   dnsProvider: 'google',
   detailedBreakdown: false,
+  firstRunWelcomeSeen: false,
 };
 
 export async function loadSettings(): Promise<ExtensionSettings> {
@@ -97,6 +100,10 @@ export async function loadSettings(): Promise<ExtensionSettings> {
       typeof v?.detailedBreakdown === 'boolean'
         ? v.detailedBreakdown
         : DEFAULT_SETTINGS.detailedBreakdown,
+    firstRunWelcomeSeen:
+      typeof v?.firstRunWelcomeSeen === 'boolean'
+        ? v.firstRunWelcomeSeen
+        : DEFAULT_SETTINGS.firstRunWelcomeSeen,
   };
   if (raw[STORAGE_KEY] === undefined && raw[LEGACY_STORAGE_KEY] !== undefined) {
     await browser.storage.local.set({ [STORAGE_KEY]: next });

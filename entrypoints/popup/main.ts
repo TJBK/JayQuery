@@ -34,7 +34,7 @@ const root = app;
 let tabHostname = '';
 let activeTabId: number | null = null;
 let settings: ExtensionSettings = { ...DEFAULT_SETTINGS };
-let currentView: 'main' | 'settings' = 'main';
+let currentView: 'welcome' | 'main' | 'settings' = 'main';
 let lastMode: CheckMode = 'apex';
 let lastResult: CheckResult | null = null;
 
@@ -354,15 +354,18 @@ function escapeHtml(s: string): string {
     .replace(/`/g, '&#96;');
 }
 
-function modeChips(mode: CheckMode): string {
+function modeChips(mode: CheckMode, showExact: boolean): string {
+  const exactChip = showExact
+    ? `<button type="button" class="chip ${mode === 'exact' ? 'chip--active' : ''}" id="btn-mode-exact" ${mode === 'exact' ? 'aria-current="true"' : ''}>
+        Tab hostname
+      </button>`
+    : '';
   return `
     <div class="mode-row" role="group" aria-label="DNS query scope">
       <button type="button" class="chip ${mode === 'apex' ? 'chip--active' : ''}" id="btn-mode-apex" ${mode === 'apex' ? 'aria-current="true"' : ''}>
         Root domain
       </button>
-      <button type="button" class="chip ${mode === 'exact' ? 'chip--active' : ''}" id="btn-mode-exact" ${mode === 'exact' ? 'aria-current="true"' : ''}>
-        Tab hostname
-      </button>
+      ${exactChip}
     </div>
   `;
 }
@@ -384,14 +387,46 @@ function renderHeaderBrand(hostname: string): string {
   `;
 }
 
-function renderLoading(mode: CheckMode): void {
-  const headerHost = tabHostname
-    ? resolveCheckTargets(tabHostname, mode).queryHost
+function renderWelcome(): void {
+  const targets = resolveCheckTargets(tabHostname, 'apex');
+  const rootHost = targets.queryHost;
+  const tabDiffers = rootHost !== targets.tab;
+  const tabLine = tabDiffers
+    ? `<p class="welcome__text">Use <strong>Tab hostname</strong> only when you want to test the exact subdomain shown in this tab: <span class="mono">${escapeHtml(tabHostname)}</span>.</p>`
     : '';
+  const tabButton = tabDiffers
+    ? '<button type="button" class="welcome__btn" id="btn-welcome-tab">Check tab hostname</button>'
+    : '';
+
+  root.innerHTML = shellWithFabFooterOnly(`
+      <header class="header">
+        ${renderHeaderBrand(rootHost)}
+      </header>
+      <section class="welcome" aria-labelledby="welcome-title">
+        <p class="welcome__kicker">First run</p>
+        <h2 class="welcome__title" id="welcome-title">JayQuery starts at the root domain.</h2>
+        <p class="welcome__text">Most email security records are set on the main domain, so JayQuery checks <span class="mono">${escapeHtml(rootHost)}</span> by default instead of <code>www</code> or another subdomain.</p>
+        ${tabLine}
+        <p class="welcome__text">You can switch between scopes later at the top of the results.</p>
+        <div class="welcome__actions">
+          <button type="button" class="welcome__btn welcome__btn--primary" id="btn-welcome-root">Check root domain</button>
+          ${tabButton}
+        </div>
+      </section>
+  `);
+  bindWelcomeActions();
+  bindSettingsFab();
+}
+
+function renderLoading(mode: CheckMode): void {
+  const targets = tabHostname ? resolveCheckTargets(tabHostname, mode) : null;
+  const rootTargets = tabHostname ? resolveCheckTargets(tabHostname, 'apex') : null;
+  const headerHost = targets?.queryHost ?? '';
+  const showExact = rootTargets ? rootTargets.queryHost !== rootTargets.tab : true;
   root.innerHTML = shellWithFabFooterOnly(`
       <header class="header">
         ${headerHost ? renderHeaderBrand(headerHost) : '<h1 class="header__title header__title--solo">JayQuery</h1>'}
-        ${modeChips(mode)}
+        ${modeChips(mode, showExact)}
         <p class="header__hint">${escapeHtml(loadingLabel(mode, tabHostname))}</p>
       </header>
       <div class="loading">
@@ -464,7 +499,8 @@ function dmarcHint(result: CheckResult): string {
 function renderResult(result: CheckResult): void {
   const { full } = result;
   const dkimRaw = result.dkim.raw;
-  const tabDiffers = result.tabHostname !== result.queryHostname;
+  const rootTargets = resolveCheckTargets(result.tabHostname, 'apex');
+  const showExact = rootTargets.queryHost !== rootTargets.tab;
   const detailedBreakdown = settings.detailedBreakdown;
   const castShameModal =
     hasReportableDmarcIssue(result) ? renderCastShameModal(result) : '';
@@ -479,8 +515,7 @@ function renderResult(result: CheckResult): void {
     <div class="shell shell--with-fab">
       <header class="header">
         ${renderHeaderBrand(result.queryHostname)}
-        ${modeChips(result.mode)}
-        ${tabDiffers ? `<p class="header__hint">Root check uses the registrable domain; switch to <strong>Tab hostname</strong> to score <span class="mono">${escapeHtml(result.tabHostname)}</span>.</p>` : ''}
+        ${modeChips(result.mode, showExact)}
       </header>
 
       <section class="hero">
@@ -682,6 +717,22 @@ function bindSettingsFab(): void {
   });
 }
 
+async function dismissWelcomeAndRun(mode: CheckMode): Promise<void> {
+  settings = { ...settings, firstRunWelcomeSeen: true };
+  await saveSettings(settings);
+  currentView = 'main';
+  await runCheck(mode);
+}
+
+function bindWelcomeActions(): void {
+  document
+    .getElementById('btn-welcome-root')
+    ?.addEventListener('click', () => void dismissWelcomeAndRun('apex'));
+  document
+    .getElementById('btn-welcome-tab')
+    ?.addEventListener('click', () => void dismissWelcomeAndRun('exact'));
+}
+
 function partialNeedsDnsRefresh(partial: Partial<ExtensionSettings>): boolean {
   return (
     partial.treatDnsResolutionErrorsAsFailure !== undefined ||
@@ -781,8 +832,13 @@ async function main(): Promise<void> {
   }
   tabHostname = tab.host;
   activeTabId = tab.tabId;
-  currentView = 'main';
   lastResult = null;
+  if (!settings.firstRunWelcomeSeen) {
+    currentView = 'welcome';
+    renderWelcome();
+    return;
+  }
+  currentView = 'main';
   await runCheck('apex');
 }
 

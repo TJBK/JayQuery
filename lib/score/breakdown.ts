@@ -209,7 +209,7 @@ export function buildDkimBreakdown(
   lines.push({
     status: 'info',
     text: queryHost
-      ? `Probed *._domainkey.${queryHost} first, then _domainkey.${queryHost} and selectors ${selectors}.`
+      ? `Probed _domainkey.${queryHost} for null DKIM first, then selectors ${selectors}, then *._domainkey.${queryHost}.`
       : `Probed selectors: ${selectors}.`,
   });
   if (!d.raw) {

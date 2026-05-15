@@ -116,7 +116,7 @@ function mxtoolboxEmailHealthUrl(domain: string): string {
 }
 
 const DNS_TECHNIQUE_DISCLOSURE =
-  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes *._domainkey first, then _domainkey and common selectors.';
+  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes _domainkey for null DKIM, then provider/common selectors, then *._domainkey.';
 
 const WALL_OF_SHAME_REPO = 'jkerai1/DMARC-WallOfShame';
 
@@ -148,10 +148,14 @@ function openUrlInNewTab(url: string): void {
   a.remove();
 }
 
+function hasReportableDmarcIssue(result: CheckResult): boolean {
+  return result.full.dmarc.status !== 'pass';
+}
+
 function renderResultFooterActions(result: CheckResult): string {
-  const showCastShame = result.full.dmarc.status === 'fail';
+  const showCastShame = hasReportableDmarcIssue(result);
   const castShameBtn = showCastShame
-    ? `<button type="button" class="footer-action-btn footer-action-btn--shame" id="btn-cast-shame">Cast shame</button>`
+    ? `<button type="button" class="footer-action-btn footer-action-btn--shame" id="btn-cast-shame">Report DMARC issue</button>`
     : '';
   return `
     <div class="fab-row fab-row--footer fab-row--split">
@@ -169,7 +173,7 @@ function renderCastShameModal(result: CheckResult): string {
     <div class="cast-shame-modal" id="cast-shame-modal" hidden aria-hidden="true">
       <div class="cast-shame-modal__backdrop" id="cast-shame-backdrop" aria-hidden="true"></div>
       <div class="cast-shame-modal__panel" role="dialog" aria-modal="true" aria-labelledby="cast-shame-heading">
-        <h2 class="cast-shame-modal__title" id="cast-shame-heading">Submit to DMARC wall of Shame</h2>
+        <h2 class="cast-shame-modal__title" id="cast-shame-heading">Report DMARC issue</h2>
         <p class="cast-shame-modal__lede">Please submit the company name for the DMARC issue.</p>
         <label class="cast-shame-modal__label" for="cast-shame-company">Company name</label>
         <input type="text" class="cast-shame-modal__input" id="cast-shame-company" autocomplete="organization" maxlength="160" placeholder="e.g. Acme Ltd" />
@@ -463,7 +467,7 @@ function renderResult(result: CheckResult): void {
   const tabDiffers = result.tabHostname !== result.queryHostname;
   const detailedBreakdown = settings.detailedBreakdown;
   const castShameModal =
-    full.dmarc.status === 'fail' ? renderCastShameModal(result) : '';
+    hasReportableDmarcIssue(result) ? renderCastShameModal(result) : '';
 
   const spfSupplement =
     result.spfMailProviderHint &&

@@ -166,7 +166,7 @@ export function scoreDkim(
       max: DKIM_MAX,
       status: 'missing',
       detail:
-        'No DKIM DNS record at *._domainkey, _domainkey, or common selectors for this hostname.',
+        'No DKIM DNS record at _domainkey, common selectors, or *._domainkey for this hostname.',
     };
   }
   if (

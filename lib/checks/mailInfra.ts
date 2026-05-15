@@ -40,7 +40,7 @@ export type MailInfraCheck = {
   providerProfile?: {
     name: string;
     expectedSpfInclude?: string;
-    /** MX provider profile selectors; DKIM DNS probes use these exclusively when present. */
+    /** MX provider profile selectors; DKIM DNS probes prefer these before common fallbacks. */
     dkimSelectors?: string[];
   };
 };

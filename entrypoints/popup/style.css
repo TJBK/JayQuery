@@ -836,6 +836,67 @@ body {
   color: var(--text);
 }
 
+.score-explain {
+  margin: 12px 0 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.score-explain summary {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.score-explain summary:hover {
+  color: #7ea6ff;
+}
+
+.score-explain__body {
+  padding: 0 12px 12px;
+}
+
+.score-explain__body p {
+  margin: 0 0 10px;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: #a8afbf;
+}
+
+.score-explain__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.score-explain__rows div {
+  display: grid;
+  grid-template-columns: 48px 64px 1fr;
+  gap: 8px;
+  align-items: start;
+  font-size: 0.72rem;
+  color: #a8afbf;
+}
+
+.score-explain__rows span {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.score-explain__rows strong {
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.score-explain__rows em {
+  min-width: 0;
+  font-style: normal;
+  line-height: 1.35;
+}
+
 .score-ring {
   --ring-size: 112px;
   width: var(--ring-size);

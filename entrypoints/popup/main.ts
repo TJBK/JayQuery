@@ -271,6 +271,22 @@ function renderScoreRing(overall: number): string {
   `;
 }
 
+function renderScoreExplanation(full: FullScore): string {
+  return `
+    <details class="score-explain">
+      <summary>Why this score?</summary>
+      <div class="score-explain__body">
+        <p>The overall score is the sum of the three email-authentication pillars: SPF up to 3 points, DMARC up to 4, and DKIM up to 3.</p>
+        <div class="score-explain__rows">
+          <div><span>SPF</span><strong>${formatScoreTenth(full.spf.points)} / ${full.spf.max}</strong><em>${escapeHtml(full.spf.detail)}</em></div>
+          <div><span>DMARC</span><strong>${formatScoreTenth(full.dmarc.points)} / ${full.dmarc.max}</strong><em>${escapeHtml(full.dmarc.detail)}</em></div>
+          <div><span>DKIM</span><strong>${formatScoreTenth(full.dkim.points)} / ${full.dkim.max}</strong><em>${escapeHtml(full.dkim.detail)}</em></div>
+        </div>
+      </div>
+    </details>
+  `;
+}
+
 function statusSummary(label: string, score: FullScore['spf']): string {
   return `${label}: ${statusLabel(score.status)} (${formatScoreTenth(score.points)}/${score.max}) - ${score.detail}`;
 }
@@ -691,6 +707,8 @@ function renderResult(result: CheckResult): void {
         ${renderScoreRing(full.overall)}
         <p class="hero__label">SPF + DMARC + DKIM (max 10)</p>
       </section>
+
+      ${renderScoreExplanation(full)}
 
       ${renderScopeComparison(result, compareResult)}
 

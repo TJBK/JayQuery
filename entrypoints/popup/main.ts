@@ -8,6 +8,7 @@ import {
 import { filterMailInfraLinesWhenCompact } from '@/lib/checks/mailInfra';
 import type { SpfMailProviderHint } from '@/lib/checks/mailProviderSpfHint';
 import { getActiveTabHostname } from '@/lib/tabHost';
+import { buildWallOfShameDmarcIssueUrl } from '@/lib/wallOfShameDmarcIssue';
 import {
   filterBreakdownForCompactMode,
   type FullScore,
@@ -118,25 +119,6 @@ function mxtoolboxEmailHealthUrl(domain: string): string {
 const DNS_TECHNIQUE_DISCLOSURE =
   'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes _domainkey for null DKIM, then provider/common selectors, then *._domainkey.';
 
-const WALL_OF_SHAME_REPO = 'jkerai1/DMARC-WallOfShame';
-
-
-function wallOfShameNewIssueUrl(company: string, result: CheckResult): string {
-  const domain = result.dmarcLookupHost;
-  const title = `${company} (${domain})`;
-  const bodyParts = [
-    `**Company:** ${company}`,
-    `**Domain:** ${domain}`,
-  ];
-  if (result.queryHostname !== result.dmarcLookupHost) {
-    bodyParts.push(`**Checked hostname:** ${result.queryHostname}`);
-  }
-  bodyParts.push('', '_Submitted via JayQuery browser extension._');
-  const body = bodyParts.join('\n');
-  const params = new URLSearchParams({ title, body });
-  return `https://github.com/${WALL_OF_SHAME_REPO}/issues/new?${params}`;
-}
-
 /** Opens a URL from a user gesture (e.g. modal submit) without extra extension permissions. */
 function openUrlInNewTab(url: string): void {
   const a = document.createElement('a');
@@ -174,10 +156,10 @@ function renderCastShameModal(result: CheckResult): string {
       <div class="cast-shame-modal__backdrop" id="cast-shame-backdrop" aria-hidden="true"></div>
       <div class="cast-shame-modal__panel" role="dialog" aria-modal="true" aria-labelledby="cast-shame-heading">
         <h2 class="cast-shame-modal__title" id="cast-shame-heading">Report DMARC issue</h2>
-        <p class="cast-shame-modal__lede">Please submit the company name for the DMARC issue.</p>
-        <label class="cast-shame-modal__label" for="cast-shame-company">Company name</label>
+        <p class="cast-shame-modal__lede">Enter the organisation name for the DMARC submission form.</p>
+        <label class="cast-shame-modal__label" for="cast-shame-company">Organisation name</label>
         <input type="text" class="cast-shame-modal__input" id="cast-shame-company" autocomplete="organization" maxlength="160" placeholder="e.g. Acme Ltd" />
-        <p class="cast-shame-modal__error" id="cast-shame-error" hidden role="alert">Enter a company name.</p>
+        <p class="cast-shame-modal__error" id="cast-shame-error" hidden role="alert">Enter an organisation name.</p>
         <div class="cast-shame-modal__actions">
           <button type="button" class="cast-shame-modal__btn cast-shame-modal__btn--ghost" id="cast-shame-cancel">Cancel</button>
           <button type="button" class="cast-shame-modal__btn cast-shame-modal__btn--primary" id="cast-shame-submit">Continue to GitHub</button>
@@ -238,7 +220,13 @@ function bindCastShameModal(result: CheckResult): void {
       shameInput.focus();
       return;
     }
-    openUrlInNewTab(wallOfShameNewIssueUrl(trimmed, result));
+    openUrlInNewTab(
+      buildWallOfShameDmarcIssueUrl(
+        trimmed,
+        result.dmarcLookupHost,
+        result.dmarcRecords,
+      ),
+    );
     closeModal();
   });
 

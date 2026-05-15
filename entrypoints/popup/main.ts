@@ -123,7 +123,7 @@ function mxtoolboxEmailHealthUrl(domain: string): string {
 }
 
 const DNS_TECHNIQUE_DISCLOSURE =
-  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only; no MTA-STS policy files or cert inspection. DKIM probes _domainkey for null DKIM, then provider/common selectors, then *._domainkey.';
+  'DNS queries use DNS-over-HTTPS (Cloudflare / Google). Entra probe uses HTTPS only. Optional MTA-STS policy fetches use the standard HTTPS policy URL; no cert inspection. DKIM probes _domainkey for null DKIM, then configured/provider/common selectors, then *._domainkey.';
 
 /** Opens a URL from a user gesture (e.g. modal submit) without extra extension permissions. */
 function openUrlInNewTab(url: string): void {

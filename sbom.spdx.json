@@ -2,22 +2,22 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "jayquery@0.3.0",
-  "documentNamespace": "http://spdx.org/spdxdocs/jayquery-0.3.0-6307c032-e238-4d7d-bc15-783489a751a6",
+  "name": "jayquery@0.4.0",
+  "documentNamespace": "http://spdx.org/spdxdocs/jayquery-0.4.0-e9dc9ab7-1c10-4c25-8ff2-bf07d948e808",
   "creationInfo": {
-    "created": "2026-05-08T21:54:16.880Z",
+    "created": "2026-05-15T18:36:19.539Z",
     "creators": [
       "Tool: npm/cli-11.12.1"
     ]
   },
   "documentDescribes": [
-    "SPDXRef-Package-jayquery-0.3.0"
+    "SPDXRef-Package-jayquery-0.4.0"
   ],
   "packages": [
     {
       "name": "jayquery",
-      "SPDXID": "SPDXRef-Package-jayquery-0.3.0",
-      "versionInfo": "0.3.0",
+      "SPDXID": "SPDXRef-Package-jayquery-0.4.0",
+      "versionInfo": "0.4.0",
       "packageFileName": "",
       "description": "Email-authentication DNS (SPF, DMARC, DKIM) plus MX/NS/MTA-STS/TLS-RPT/DNSSEC via DoH, and Entra OIDC tenant probe ÔÇö Chrome, Edge & Firefox MV3.",
       "primaryPackagePurpose": "LIBRARY",
@@ -29,7 +29,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/jayquery@0.3.0"
+          "referenceLocator": "pkg:npm/jayquery@0.4.0"
         }
       ]
     },
@@ -1231,10 +1231,10 @@
     },
     {
       "name": "@oxc-project/types",
-      "SPDXID": "SPDXRef-Package-oxc-project.types-0.127.0",
-      "versionInfo": "0.127.0",
+      "SPDXID": "SPDXRef-Package-oxc-project.types-0.130.0",
+      "versionInfo": "0.130.0",
       "packageFileName": "node_modules/@oxc-project/types",
-      "downloadLocation": "https://registry.npmjs.org/@oxc-project/types/-/types-0.127.0.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@oxc-project/types/-/types-0.130.0.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1242,13 +1242,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40oxc-project/types@0.127.0"
+          "referenceLocator": "pkg:npm/%40oxc-project/types@0.130.0"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "688617401a389426cee33d11dc51deb9c407a45e3a9762db31dc51beabee46e5b63b17674a472783907cf8ad76b2980b0e3f77aed377f89d9569cfd320ef9c89"
+          "checksumValue": "89b0f6bacc7d251bbb7f9a6edad30a308e1ca40e0d817250a1844fe2943b3f19a7d65ea4ff9dea5ad41665aca1632dd7e10664b7dd0eb7e98911a797a2e8a8e9"
         }
       ]
     },
@@ -1346,10 +1346,10 @@
     },
     {
       "name": "@rolldown/binding-android-arm64",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-android-arm64-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-android-arm64-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-android-arm64",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-android-arm64/-/binding-android-arm64-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-android-arm64/-/binding-android-arm64-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1357,22 +1357,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-android-arm64@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-android-arm64@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "b3bd29546870e33a867859d75af03324396fc61951a2595a81d08229180eb2050e1f73759742c8c5ff3702d1b399be528953381e39791f26ab3117dd7e3dc369"
+          "checksumValue": "7c9237234af70b73a3ff37410a968298145961fd3bc696aae3209f0c3a12166f9b7963736c8976ea9b96f11ada51dba0a09c3ff79cdeacd3a7ea36ac021cd29a"
         }
       ]
     },
     {
       "name": "@rolldown/binding-darwin-arm64",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-darwin-arm64-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-darwin-arm64-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-darwin-arm64",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-darwin-arm64/-/binding-darwin-arm64-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-darwin-arm64/-/binding-darwin-arm64-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1380,22 +1380,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-darwin-arm64@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-darwin-arm64@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e24b1673d9f49a1959a59f4f3198131a378e3d1bbc301d59dd3cf4328d367967d6087316d7337cd90cffa4bfeb0bec906bef199eeb4c17426325eecf8f06ac63"
+          "checksumValue": "70a9c085612c57b4cf700ff9100b5e0e9e8a7096414361be06a13bcdac8c322ee432fc11b1bbfb593f5a3a79f458d97848a1087f8def8d2df58943eef349f35e"
         }
       ]
     },
     {
       "name": "@rolldown/binding-darwin-x64",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-darwin-x64-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-darwin-x64-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-darwin-x64",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-darwin-x64/-/binding-darwin-x64-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-darwin-x64/-/binding-darwin-x64-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1403,22 +1403,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-darwin-x64@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-darwin-x64@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "494483388e96c1454d716c5dd364040632dd63554f1ef944930e93ffc9d81b7db68985824f145bd6fce4e04fa659661e853a7b11189bab9e0b4891a39a8b8eb3"
+          "checksumValue": "60aad5c108c84413e8fb91bfbb4df01a36ddcb8abba72cc27bddc32bd549ef391599e83c2c9ec66e0b221d6751e314a87b80805d10fb05c8e06edafae1b91736"
         }
       ]
     },
     {
       "name": "@rolldown/binding-freebsd-x64",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-freebsd-x64-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-freebsd-x64-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-freebsd-x64",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-freebsd-x64/-/binding-freebsd-x64-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-freebsd-x64/-/binding-freebsd-x64-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1426,22 +1426,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-freebsd-x64@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-freebsd-x64@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "8709f3de7c3d75b274e440cefcfbdc8da69ec2aa83cbb635ae7d543bcd65f2220ad468de9cc13be5d975e9a8dbbd248c7efeba597491098288a9f82ad8a09fc7"
+          "checksumValue": "cffa01b11128e3a4ac16a07062d15ed24a497818a3013e3c3bf5972c8e2cba208b064af4dd14ed4c9302cd2743776ce7961f15262ccbd3d5d5910824f086689f"
         }
       ]
     },
     {
       "name": "@rolldown/binding-linux-arm-gnueabihf",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-arm-gnueabihf-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-arm-gnueabihf-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-linux-arm-gnueabihf",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-arm-gnueabihf/-/binding-linux-arm-gnueabihf-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-arm-gnueabihf/-/binding-linux-arm-gnueabihf-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1449,22 +1449,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-arm-gnueabihf@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-arm-gnueabihf@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "212f96edea5373000d98549016b4b54a2bc45c7b65d49b6e400f70971ad94dc362ea6c7e143398ada9067afbef4f0823d89bd688af01dbdfea0fd0442d93f25d"
+          "checksumValue": "8a4f2aec6335d73c6f63115cd8f783713e9306f84240c694c5fa61fcce65f6c2ae4ecfd28e0dcbf81cb0d05ef0d1954b0599b1df43fe806d040b3ccdf8c15c99"
         }
       ]
     },
     {
       "name": "@rolldown/binding-linux-arm64-gnu",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-arm64-gnu-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-arm64-gnu-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-linux-arm64-gnu",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-arm64-gnu/-/binding-linux-arm64-gnu-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-arm64-gnu/-/binding-linux-arm64-gnu-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1472,22 +1472,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-arm64-gnu@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-arm64-gnu@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "7babac19a1ca5b904c3593b2992d54704606a3040c59c819ef5675ed297f876f99ce2349d5af67dd9bdccfa2dd472216e79ef6c010931ff67e6cab99a2e1a4f5"
+          "checksumValue": "4284b1d84932aeb759ea473213cb2da99eb6b7462b6bc16ce626bd94ec49ae1e9331024aee040a9ac71d4c77fba4e5ca4442ab5703ad25c406dea5527dcf3ae8"
         }
       ]
     },
     {
       "name": "@rolldown/binding-linux-arm64-musl",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-arm64-musl-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-arm64-musl-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-linux-arm64-musl",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-arm64-musl/-/binding-linux-arm64-musl-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-arm64-musl/-/binding-linux-arm64-musl-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1495,22 +1495,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-arm64-musl@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-arm64-musl@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "6ff0a06f0009a66ad12e9d3644f7e16ee75fe6d66737d9ec3d62bcdb39de7eca3cdf67ad91e9bc1fb152670c6b388f5d8dc7533fb53a61f3616d19e1edd8c4ae"
+          "checksumValue": "bb0370169c0a78d8996b07c0581820d15233b4f4d5de2861875bd5df7e21f62be734ba2bc6740c53a173f301b565be1087d2c2d7f3247324f76250d71b746c82"
         }
       ]
     },
     {
       "name": "@rolldown/binding-linux-ppc64-gnu",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-ppc64-gnu-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-ppc64-gnu-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-linux-ppc64-gnu",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-ppc64-gnu/-/binding-linux-ppc64-gnu-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-ppc64-gnu/-/binding-linux-ppc64-gnu-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1518,22 +1518,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-ppc64-gnu@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-ppc64-gnu@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e04208d623464543795b019b17f90e87f1089280cdf47b2ea602d0a177d8f83d68c899bbfc5e2de4f614e67f12599806d051306a4c8cf291a0c1c058aee19394"
+          "checksumValue": "cd8d5bba5ece5abec3141889fbec287d7be7afc078e5c7b742c41484aac8857b3280087b6d3930c9e3356e2d5ada0e42ff20bf37c4d9c860c4a0c7e6fe5f66a6"
         }
       ]
     },
     {
       "name": "@rolldown/binding-linux-s390x-gnu",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-s390x-gnu-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-s390x-gnu-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-linux-s390x-gnu",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-s390x-gnu/-/binding-linux-s390x-gnu-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-s390x-gnu/-/binding-linux-s390x-gnu-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1541,22 +1541,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-s390x-gnu@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-s390x-gnu@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "007f28ab75ea428e0889ba555ef3de2c3239a73929627d1689901f4f4e64173a09ead40dcf045d0d8438e4cf08fe0b256e87516705bcbb12e16d205b92ff7aac"
+          "checksumValue": "d1fae5b13fdfe05b7a23b48c1124ca9c5ddc66c7627109f574232417f8d3f700cb13e806a2241fbf59e64fd7beb3bb3f7de92fbf2ead64cda31ef236b646c90d"
         }
       ]
     },
     {
       "name": "@rolldown/binding-linux-x64-gnu",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-x64-gnu-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-x64-gnu-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-linux-x64-gnu",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1564,22 +1564,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-x64-gnu@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-x64-gnu@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "70b9e3577c5fa3b2ac95b538d59ef3f011ff135cb99b3518cc0aa287577530368819944232a4e28ea2efefafcfedfc87baf51c7c6b08a6a09d75d6f12cb2bdac"
+          "checksumValue": "5c0055986a7d4e0d16b294d5bf076e4dce1fa6acba267014ad241ee8ebb2a83ff4de723baf43bd396524308c05ae328022aa25beaa00e19ac9a698301341b19b"
         }
       ]
     },
     {
       "name": "@rolldown/binding-linux-x64-musl",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-x64-musl-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-linux-x64-musl-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-linux-x64-musl",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-x64-musl/-/binding-linux-x64-musl-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-linux-x64-musl/-/binding-linux-x64-musl-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1587,22 +1587,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-x64-musl@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-linux-x64-musl@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "d2985c943c35b29b0bedd501dfbb08011ba2b36b40828982257007665a6df0f5d9e016b47513f57beeba96c46aadf84849e37d6c418d8d0b3e4ff15b77ba181b"
+          "checksumValue": "6d5e1fcecc2ecd570a0fdd28fd533a42a2b19f1943ab48360484832cd566c6b9e1a6fd430dbc8f84222361fbf360b57e32f90a2a742dd90e803bce9210150b51"
         }
       ]
     },
     {
       "name": "@rolldown/binding-openharmony-arm64",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-openharmony-arm64-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-openharmony-arm64-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-openharmony-arm64",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-openharmony-arm64/-/binding-openharmony-arm64-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-openharmony-arm64/-/binding-openharmony-arm64-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1610,22 +1610,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-openharmony-arm64@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-openharmony-arm64@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "d1a83f8448173b0830e2df10c90bd40b1bc483e574281700e98b8ec7d834af4d8ca6bbad445e5dca58e09b7126474d8edbdd945fb51e4ba1f3587025e8a83284"
+          "checksumValue": "fcc874661ab738fedf56cd247101d93fa95912d84c1936927fc5014184851190d61975e5102fa727a12a7a768adade0b05731edc0f8afc6d815575ddb4eaf83d"
         }
       ]
     },
     {
       "name": "@rolldown/binding-wasm32-wasi",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-wasm32-wasi",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-wasm32-wasi/-/binding-wasm32-wasi-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-wasm32-wasi/-/binding-wasm32-wasi-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1633,22 +1633,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-wasm32-wasi@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-wasm32-wasi@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "2c45de8babe8d04e704c6c29909e0aa13dce649467825c2576de7388bcce95ceaaa9be79cf8b5636ad80f8f16a089baf59674fe77095846d59f4db53a033c9ac"
+          "checksumValue": "fb5c5cf57e3997cb9fb01026e868efc76a8344863d95356dd1c81635c27ed607615ef91bc5e3c0eb4c914f0493b972f4f42321c899a3a55ec4dcda32c5ba8541"
         }
       ]
     },
     {
       "name": "@rolldown/binding-win32-arm64-msvc",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-win32-arm64-msvc-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-win32-arm64-msvc-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-win32-arm64-msvc",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-win32-arm64-msvc/-/binding-win32-arm64-msvc-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1656,22 +1656,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-win32-arm64-msvc@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-win32-arm64-msvc@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "8149b2cc197748f31aea1aea154b61f6c55f70b06562c6cccc1c793e57b132ba194ad8331aa959dbaa581bcf6b05be3932789afa88a5e9800815e11619686864"
+          "checksumValue": "d43f94a9975f9ee47e272d4680c2708bce5b0f8d07db5b8d98e3d1590870e28452ba8959fc1e6b8b1678e432b62973930af99509e71ab9680485bc3c6c8eed3b"
         }
       ]
     },
     {
       "name": "@rolldown/binding-win32-x64-msvc",
-      "SPDXID": "SPDXRef-Package-rolldown.binding-win32-x64-msvc-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.binding-win32-x64-msvc-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/binding-win32-x64-msvc",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1679,22 +1679,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/binding-win32-x64-msvc@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/binding-win32-x64-msvc@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "de1922a2571402f3c1f452dbdd465d7e355535685eacdd5ffec92419624ffdf81242161466948846bd3f23c64af53905dc5ee4c6f240934f8870abcf1e4f6a42"
+          "checksumValue": "20d03271a5ae86538adf09389911c6b1d83061699df5c0a174f744f5bc169b2eab9fd56a54d60d14684e757ae87d7531c0722771288f35bf2d366f249c354879"
         }
       ]
     },
     {
       "name": "@rolldown/pluginutils",
-      "SPDXID": "SPDXRef-Package-rolldown.pluginutils-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown.pluginutils-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/@rolldown/pluginutils",
-      "downloadLocation": "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1702,13 +1702,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40rolldown/pluginutils@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/%40rolldown/pluginutils@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "9fc8a8b033ade88835521276018aa82211d687f8accf4c6989c1d3ce92817a8b5d56c4c4731b1203f8b711533b810023d2b536ece2c0c428f3963d7921663b6e"
+          "checksumValue": "da3f5b1ade4987c863faf3ed8333ed97bda3d324711c0cae9a8a3a4cd7c08ec2c1d3852da52bcf6cf703701331cfb9fef42601d1cd46c501716118368e29aa1b"
         }
       ]
     },
@@ -1737,10 +1737,10 @@
     },
     {
       "name": "@tybys/wasm-util",
-      "SPDXID": "SPDXRef-Package-tybys.wasm-util-0.10.1",
-      "versionInfo": "0.10.1",
+      "SPDXID": "SPDXRef-Package-tybys.wasm-util-0.10.2",
+      "versionInfo": "0.10.2",
       "packageFileName": "node_modules/@tybys/wasm-util",
-      "downloadLocation": "https://registry.npmjs.org/@tybys/wasm-util/-/wasm-util-0.10.1.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@tybys/wasm-util/-/wasm-util-0.10.2.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1748,13 +1748,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40tybys/wasm-util@0.10.1"
+          "referenceLocator": "pkg:npm/%40tybys/wasm-util@0.10.2"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "f6d4da3c92d289e8d92b1f819a8838b92b9bb5ea93bc5ad5ad44709261e2c41a341b8b1e0f4cd4c69f7c1350f35012712d0dcd3f05eb18a0e2563c31fc3a4fb2"
+          "checksumValue": "46806f2765f4c2e2a5585223af07df1b0d48a991ca42acc872129a69d6597e7369b00629da6334877e89b4f0a33430071a061ecffd79b8c0697c6c1c86188c82"
         }
       ]
     },
@@ -1829,10 +1829,10 @@
     },
     {
       "name": "@types/estree",
-      "SPDXID": "SPDXRef-Package-types.estree-1.0.8",
-      "versionInfo": "1.0.8",
+      "SPDXID": "SPDXRef-Package-types.estree-1.0.9",
+      "versionInfo": "1.0.9",
       "packageFileName": "node_modules/@types/estree",
-      "downloadLocation": "https://registry.npmjs.org/@types/estree/-/estree-1.0.8.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1840,13 +1840,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/estree@1.0.8"
+          "referenceLocator": "pkg:npm/%40types/estree@1.0.9"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "7561f31dad96a845c8fced44f4e8eba1c313289976992ac4a258752289abbfa53e26e3706875ec5f1f5b2eee601bb05458520dd2c90840943f2f5ac87b1e17eb"
+          "checksumValue": "1a174f832d5e978fc898fd395f4e54c38730dbf33ddc10949a712f599352b650b310a304e05924f98a680393a21cd426a12ec269f6fc5dadcfc9af26d50af37a"
         }
       ]
     },
@@ -1944,10 +1944,10 @@
     },
     {
       "name": "@types/node",
-      "SPDXID": "SPDXRef-Package-types.node-25.6.0",
-      "versionInfo": "25.6.0",
+      "SPDXID": "SPDXRef-Package-types.node-25.8.0",
+      "versionInfo": "25.8.0",
       "packageFileName": "node_modules/@types/node",
-      "downloadLocation": "https://registry.npmjs.org/@types/node/-/node-25.6.0.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@types/node/-/node-25.8.0.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1955,22 +1955,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/node@25.6.0"
+          "referenceLocator": "pkg:npm/%40types/node@25.8.0"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "faa21844a74d609c18def44264c7496cf2c902d1a3401b9dcd9cddcf04189043d077e3c91a2c542f941fbc22c36942e82eff91853dcb0e4c047ca6809204a635"
+          "checksumValue": "4c215293c21987e88b5f5c6d92ca0156d76680bfb5217d1f0bd05e53842a152b8d74dfcaf8752586a3b312649862965456c2d870fa9cf4a5feeb4883ba78a749"
         }
       ]
     },
     {
       "name": "@vitest/expect",
-      "SPDXID": "SPDXRef-Package-vitest.expect-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest.expect-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/@vitest/expect",
-      "downloadLocation": "https://registry.npmjs.org/@vitest/expect/-/expect-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@vitest/expect/-/expect-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -1978,22 +1978,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitest/expect@4.1.5"
+          "referenceLocator": "pkg:npm/%40vitest/expect@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "3d605a458e49a0ab919c79541dfa55fcaa2117295a0d94eea5c5cdd47f6f62bc8d2ce9e2b52c3ad0cc3d200136afaecd6f0c33070fc273ff2af412b79085fc2b"
+          "checksumValue": "ec41c3aae3ed8402d25748e18638045bc1576af88cc7bad2aaef16ea8a82a00b8e84aa2ff35e0ff7d403575a71300dd03efdb562e76f267808863acd238a292e"
         }
       ]
     },
     {
       "name": "@vitest/mocker",
-      "SPDXID": "SPDXRef-Package-vitest.mocker-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest.mocker-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/@vitest/mocker",
-      "downloadLocation": "https://registry.npmjs.org/@vitest/mocker/-/mocker-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@vitest/mocker/-/mocker-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -2001,22 +2001,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitest/mocker@4.1.5"
+          "referenceLocator": "pkg:npm/%40vitest/mocker@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "ff1d849850b8993e0d373aaf0b77e67acb95f7bc39142f74dca3e67b2e20b27262310dc17b52250ca55a0da1bc8aa68b147a89d85544931664e5599e2e3208b7"
+          "checksumValue": "30215ceb77333231089ce95c636729402bc237e2a06c09feeb4c6ef5c3203f8b0a68b0b924d00ac3b247f107409e8002f3c856d48892359f868155e537551c31"
         }
       ]
     },
     {
       "name": "@vitest/pretty-format",
-      "SPDXID": "SPDXRef-Package-vitest.pretty-format-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest.pretty-format-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/@vitest/pretty-format",
-      "downloadLocation": "https://registry.npmjs.org/@vitest/pretty-format/-/pretty-format-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@vitest/pretty-format/-/pretty-format-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -2024,22 +2024,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitest/pretty-format@4.1.5"
+          "referenceLocator": "pkg:npm/%40vitest/pretty-format@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "ec8deaea5e6aaf4ddd55f317db00a8f45c704896cf7702a3cb6baefd83e9537c1f1ef20be101f0551a79ece7c6ac315e509f3ff1075f04a215d76153b4b9f4d2"
+          "checksumValue": "8794b10ff2333616589eb49946c5194080bebc3d0663c714bead22c2c9a414a8b144228b2d6a825dafc5210e12d51fac23e3c6a288e41ec74dadb66233d42983"
         }
       ]
     },
     {
       "name": "@vitest/runner",
-      "SPDXID": "SPDXRef-Package-vitest.runner-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest.runner-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/@vitest/runner",
-      "downloadLocation": "https://registry.npmjs.org/@vitest/runner/-/runner-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@vitest/runner/-/runner-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -2047,22 +2047,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitest/runner@4.1.5"
+          "referenceLocator": "pkg:npm/%40vitest/runner@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "d83fa8ecfafcd8810ee3a60fa6803f614d2779ecabe854dead06f9468ec152706ebfa350b53fe49959dcce7822304061ce0ab3d94658979800ade8ecc8444349"
+          "checksumValue": "9ce3c29a7dbec83d1936629db171affd4c4c3166ccb8a783e86c989dc370764603c6942facf48a623dab5ae0e30b66386fac3a8638a9e5d04a173114b997b7bc"
         }
       ]
     },
     {
       "name": "@vitest/snapshot",
-      "SPDXID": "SPDXRef-Package-vitest.snapshot-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest.snapshot-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/@vitest/snapshot",
-      "downloadLocation": "https://registry.npmjs.org/@vitest/snapshot/-/snapshot-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@vitest/snapshot/-/snapshot-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -2070,22 +2070,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitest/snapshot@4.1.5"
+          "referenceLocator": "pkg:npm/%40vitest/snapshot@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "cf2a5712de0a1ff5e02863d4cf8782d80bc4ad8c74332e617cbf280dbd47cc6169124d4feb66f14a885dc8e9afcfe77d509c1a9c8ebc30ac2bd84aae39a3a031"
+          "checksumValue": "621b1d13ac4055f4c39b38f12f664352f8e3f99b20c8e29ef93750cea903ef6c083a61e46bc36e190e8da53359bfd0f667addf6f058a24f795a44c38110818c7"
         }
       ]
     },
     {
       "name": "@vitest/spy",
-      "SPDXID": "SPDXRef-Package-vitest.spy-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest.spy-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/@vitest/spy",
-      "downloadLocation": "https://registry.npmjs.org/@vitest/spy/-/spy-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@vitest/spy/-/spy-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -2093,22 +2093,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitest/spy@4.1.5"
+          "referenceLocator": "pkg:npm/%40vitest/spy@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "da534eb21ebe47621d9dfd53099a92c1894a37613f883943f2c814e7d918565f8e3039af95d3b5543937f6c9917e950dc18a4d4559f7c3861fb82eca7db06791"
+          "checksumValue": "2452b1331eae761c0a87f2dda36ef47b5ed05fbd74be0ba7324b8f02f5e31d2bc2ea8a8b5801e15618e0fc8ef5ab4bb4081484ac83835752a3bf41503525a376"
         }
       ]
     },
     {
       "name": "@vitest/utils",
-      "SPDXID": "SPDXRef-Package-vitest.utils-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest.utils-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/@vitest/utils",
-      "downloadLocation": "https://registry.npmjs.org/@vitest/utils/-/utils-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@vitest/utils/-/utils-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -2116,13 +2116,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitest/utils@4.1.5"
+          "referenceLocator": "pkg:npm/%40vitest/utils@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "efac1d92b99f5dfa868ee7868276f8e484cfc948b5c9c678207802d9b84f0d47d61e4958feadcc74b38007e4c5d5eeb17e5f0dc4d63465868f0853564acc3752"
+          "checksumValue": "171218f94f354772c6282c5a1c7151439fa0ebf8918062e678759da760268f8963411ac42161e66720df0d8051665a72a80eea2b1b52f430f576193c46744855"
         }
       ]
     },
@@ -2197,10 +2197,10 @@
     },
     {
       "name": "@wxt-dev/browser",
-      "SPDXID": "SPDXRef-Package-wxt-dev.browser-0.1.40",
-      "versionInfo": "0.1.40",
+      "SPDXID": "SPDXRef-Package-wxt-dev.browser-0.1.42",
+      "versionInfo": "0.1.42",
       "packageFileName": "node_modules/@wxt-dev/browser",
-      "downloadLocation": "https://registry.npmjs.org/@wxt-dev/browser/-/browser-0.1.40.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@wxt-dev/browser/-/browser-0.1.42.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -2208,13 +2208,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40wxt-dev/browser@0.1.40"
+          "referenceLocator": "pkg:npm/%40wxt-dev/browser@0.1.42"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "876feffc7a648f9b33fff87ce0fae8a81680713b031512a9f5bfc954738afebecb4f45cb13e643b3960dd419c52d410774cec6ddf5234f2046f3871ac9742c85"
+          "checksumValue": "0526f41f4f62e3ed1696a16737b2e7656d0ceae08f1fd2a775c886c7b9b0385291563342a2bab03e4de1895079f3243e73224da43bd858be88a0f071bcff2a10"
         }
       ]
     },
@@ -4520,10 +4520,10 @@
     },
     {
       "name": "fs-extra",
-      "SPDXID": "SPDXRef-Package-fs-extra-11.3.4",
-      "versionInfo": "11.3.4",
+      "SPDXID": "SPDXRef-Package-fs-extra-11.3.5",
+      "versionInfo": "11.3.5",
       "packageFileName": "node_modules/fs-extra",
-      "downloadLocation": "https://registry.npmjs.org/fs-extra/-/fs-extra-11.3.4.tgz",
+      "downloadLocation": "https://registry.npmjs.org/fs-extra/-/fs-extra-11.3.5.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -4531,13 +4531,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/fs-extra@11.3.4"
+          "referenceLocator": "pkg:npm/fs-extra@11.3.5"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "0935ddeab93f337fd42cd423f0506a0561d80556326d0dd53c1c34c462857b7b6e1fbcad4fa0029efce9210dd466d07ccaf50a0b67179f56bec7ee445502e8bc"
+          "checksumValue": "78aa51280a2f76966d4755a8a4b1f19415af0203e7cb7738817d46e498709a6c385c98f489f483e6a0794cea3c866034c2544a0c0380844135c953e0b3a16072"
         }
       ]
     },
@@ -4635,10 +4635,10 @@
     },
     {
       "name": "get-east-asian-width",
-      "SPDXID": "SPDXRef-Package-get-east-asian-width-1.5.0",
-      "versionInfo": "1.5.0",
+      "SPDXID": "SPDXRef-Package-get-east-asian-width-1.6.0",
+      "versionInfo": "1.6.0",
       "packageFileName": "node_modules/get-east-asian-width",
-      "downloadLocation": "https://registry.npmjs.org/get-east-asian-width/-/get-east-asian-width-1.5.0.tgz",
+      "downloadLocation": "https://registry.npmjs.org/get-east-asian-width/-/get-east-asian-width-1.6.0.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -4646,13 +4646,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/get-east-asian-width@1.5.0"
+          "referenceLocator": "pkg:npm/get-east-asian-width@1.6.0"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "090f9b10ef93bdafea966c36e1d09e8ee94ae6933356750e14e8a356881ddca42cd3b1e7448829f131a2a6f082453d3ac5e6046e96e0c1a0b18251728ae21c98"
+          "checksumValue": "4116ef0c86f1e9892551ee91c5e4de95e311d32bf77181fa3ec3d91dc9d59fbc6fef33b504737caf45c44eef27e987b743e6a1b526ab7375a0b4d5a67a12017c"
         }
       ]
     },
@@ -5440,10 +5440,10 @@
     },
     {
       "name": "jiti",
-      "SPDXID": "SPDXRef-Package-jiti-2.6.1",
-      "versionInfo": "2.6.1",
+      "SPDXID": "SPDXRef-Package-jiti-2.7.0",
+      "versionInfo": "2.7.0",
       "packageFileName": "node_modules/jiti",
-      "downloadLocation": "https://registry.npmjs.org/jiti/-/jiti-2.6.1.tgz",
+      "downloadLocation": "https://registry.npmjs.org/jiti/-/jiti-2.7.0.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -5451,13 +5451,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/jiti@2.6.1"
+          "referenceLocator": "pkg:npm/jiti@2.7.0"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "7a48a50923758f046f21b81e83fe7b60587ca900cd6f00dbf714ffaaed830076c5159522708978ca055a02fcef78c84c56bdcb9e948a4cd9f0b7c3e839f98a85"
+          "checksumValue": "002ffb2687c9bd91abae779635a12725e38b531f89946b7bb4d6b4c198913d3e0c635c267ca8eddbee8eda9daecf6fac92597c39966624c36a7a47bb90a6cd81"
         }
       ]
     },
@@ -6406,10 +6406,10 @@
     },
     {
       "name": "magicast",
-      "SPDXID": "SPDXRef-Package-magicast-0.5.2",
-      "versionInfo": "0.5.2",
+      "SPDXID": "SPDXRef-Package-magicast-0.5.3",
+      "versionInfo": "0.5.3",
       "packageFileName": "node_modules/magicast",
-      "downloadLocation": "https://registry.npmjs.org/magicast/-/magicast-0.5.2.tgz",
+      "downloadLocation": "https://registry.npmjs.org/magicast/-/magicast-0.5.3.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -6417,13 +6417,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/magicast@0.5.2"
+          "referenceLocator": "pkg:npm/magicast@0.5.3"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "1376498782774bd29fc1d8d985ed9a7e3e91f651883793e17abd69177f541ab5d1aaafd50da195206375dc18c7776bbc07ad6102b0063a7b28ee704ea2e5b74d"
+          "checksumValue": "a55284e1475243b0ef1f38afb02205c760499f59871ba2accab15c6b1171ead38d767784b9386b0f1d028f700c839f0ac8de29cd84fe2c73a8b710d00e336f93"
         }
       ]
     },
@@ -7349,10 +7349,10 @@
     },
     {
       "name": "postcss",
-      "SPDXID": "SPDXRef-Package-postcss-8.5.13",
-      "versionInfo": "8.5.13",
+      "SPDXID": "SPDXRef-Package-postcss-8.5.14",
+      "versionInfo": "8.5.14",
       "packageFileName": "node_modules/postcss",
-      "downloadLocation": "https://registry.npmjs.org/postcss/-/postcss-8.5.13.tgz",
+      "downloadLocation": "https://registry.npmjs.org/postcss/-/postcss-8.5.14.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -7360,13 +7360,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/postcss@8.5.13"
+          "referenceLocator": "pkg:npm/postcss@8.5.14"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "aa27f4fa31866682d67477b2dd41471d63f41fb19b9ac93c4f9544ab26056d6a8faf55eabcb1816e4fec97c5797b11a67182649493a1390ab5a55f4872c8856a"
+          "checksumValue": "4a848be3e39212d47df4b1c56508892e44f9f42e41d5a9863b53734f08fb4d3d6a0948143ba8713afce4398c43faf32b5c13375c920ace892811176a42afd99a"
         }
       ]
     },
@@ -7901,10 +7901,10 @@
     },
     {
       "name": "rolldown",
-      "SPDXID": "SPDXRef-Package-rolldown-1.0.0-rc.17",
-      "versionInfo": "1.0.0-rc.17",
+      "SPDXID": "SPDXRef-Package-rolldown-1.0.1",
+      "versionInfo": "1.0.1",
       "packageFileName": "node_modules/rolldown",
-      "downloadLocation": "https://registry.npmjs.org/rolldown/-/rolldown-1.0.0-rc.17.tgz",
+      "downloadLocation": "https://registry.npmjs.org/rolldown/-/rolldown-1.0.1.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -7912,13 +7912,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/rolldown@1.0.0-rc.17"
+          "referenceLocator": "pkg:npm/rolldown@1.0.1"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "66b4f9de800aaed038f98b4158f41bb4f3b121b5436f14f4a2b71811129deb75494c5d77ccf7205d3bc3e3ce372fca5cb08ecce8c12bb7c42d38dea5ac1f6dc8"
+          "checksumValue": "5f42901e58cd9c491636aaa2cfdcc9ac6ba78750741e03b12d7be716908e71a773732e6aa21677b6a304520d34be7728468bd7b8add9a824fd2a79cace822715"
         }
       ]
     },
@@ -8039,10 +8039,10 @@
     },
     {
       "name": "semver",
-      "SPDXID": "SPDXRef-Package-semver-7.7.4",
-      "versionInfo": "7.7.4",
+      "SPDXID": "SPDXRef-Package-semver-7.8.0",
+      "versionInfo": "7.8.0",
       "packageFileName": "node_modules/semver",
-      "downloadLocation": "https://registry.npmjs.org/semver/-/semver-7.7.4.tgz",
+      "downloadLocation": "https://registry.npmjs.org/semver/-/semver-7.8.0.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "ISC",
@@ -8050,13 +8050,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/semver@7.7.4"
+          "referenceLocator": "pkg:npm/semver@7.8.0"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "bc5282d8812d427561a53efc875629f30cf0adff0233e33328c1c62597c1b738593727111675ec1e4e84e53c4892432c80d4bb99d5f700607bc7640cd9d8b894"
+          "checksumValue": "01c33b755ff9ba5e047a4a10dbd0209b9beb8bc24da91ca3dfda34aa95fabc3176199aedbad665e51c200f55e766389301f9dcb0984c238f10407dec37ced834"
         }
       ]
     },
@@ -9005,10 +9005,10 @@
     },
     {
       "name": "undici-types",
-      "SPDXID": "SPDXRef-Package-undici-types-7.19.2",
-      "versionInfo": "7.19.2",
+      "SPDXID": "SPDXRef-Package-undici-types-7.24.6",
+      "versionInfo": "7.24.6",
       "packageFileName": "node_modules/undici-types",
-      "downloadLocation": "https://registry.npmjs.org/undici-types/-/undici-types-7.19.2.tgz",
+      "downloadLocation": "https://registry.npmjs.org/undici-types/-/undici-types-7.24.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -9016,22 +9016,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/undici-types@7.19.2"
+          "referenceLocator": "pkg:npm/undici-types@7.24.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "a985675793849b6016f1c24c0a9755db4083c9a3778340230e53867f5396e22683131f0cc1db42854a78ceee07d153f79c3445ffc44a587f883e9f6e5b460666"
+          "checksumValue": "591356fac2608f9381378ff42691c5aadab38696e75741ae07e3a8cc0f6008bedaf7ddd2994fb5241642ccb37162c6cc7c87832fe953b29843e6337937e9f4ce"
         }
       ]
     },
     {
       "name": "unimport",
-      "SPDXID": "SPDXRef-Package-unimport-6.2.0",
-      "versionInfo": "6.2.0",
+      "SPDXID": "SPDXRef-Package-unimport-6.3.0",
+      "versionInfo": "6.3.0",
       "packageFileName": "node_modules/unimport",
-      "downloadLocation": "https://registry.npmjs.org/unimport/-/unimport-6.2.0.tgz",
+      "downloadLocation": "https://registry.npmjs.org/unimport/-/unimport-6.3.0.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -9039,13 +9039,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/unimport@6.2.0"
+          "referenceLocator": "pkg:npm/unimport@6.3.0"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e0d72a6a98401d07dfe1e056437a6354e09834b96654618ca0b0e66e8a1b87cf8e41ef723fb5327a830fd38dccd5b1b460d7370aab6e903d95b883713aa9b8ad"
+          "checksumValue": "33e0f19395bd59177ef23e7a5bdb69f25196fdd98c73b839ce3ec15909c48ca421af206cb6ab22d55d22cdbd331f04a410df1c49857b2bbe7f6f291a8ab576b4"
         }
       ]
     },
@@ -9189,10 +9189,10 @@
     },
     {
       "name": "vite",
-      "SPDXID": "SPDXRef-Package-vite-8.0.10",
-      "versionInfo": "8.0.10",
+      "SPDXID": "SPDXRef-Package-vite-8.0.13",
+      "versionInfo": "8.0.13",
       "packageFileName": "node_modules/vite",
-      "downloadLocation": "https://registry.npmjs.org/vite/-/vite-8.0.10.tgz",
+      "downloadLocation": "https://registry.npmjs.org/vite/-/vite-8.0.13.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -9200,13 +9200,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/vite@8.0.10"
+          "referenceLocator": "pkg:npm/vite@8.0.13"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "ad9b94bbd8fa279ba8b4b0ecf9c000e0ee47e0ad527cf962525430a9ae981304ab5836733f8ae19b4d28251e6c9cc7b08f117957f2b70f891cb6c513b0853d33"
+          "checksumValue": "305b63058833992c66800e1101f8c8c975a919ed6800b9e38144f3cd5ed02f1fd32b10b38ed307e8577dfde54afb9160d6a368cf9540c2c98cb3f3687eb989bf"
         }
       ]
     },
@@ -9235,10 +9235,10 @@
     },
     {
       "name": "vitest",
-      "SPDXID": "SPDXRef-Package-vitest-4.1.5",
-      "versionInfo": "4.1.5",
+      "SPDXID": "SPDXRef-Package-vitest-4.1.6",
+      "versionInfo": "4.1.6",
       "packageFileName": "node_modules/vitest",
-      "downloadLocation": "https://registry.npmjs.org/vitest/-/vitest-4.1.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/vitest/-/vitest-4.1.6.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -9246,13 +9246,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/vitest@4.1.5"
+          "referenceLocator": "pkg:npm/vitest@4.1.6"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "f57c75bf7fe28779bd84df926df914cb2d0902cef66a9debee3a1cf3b5cbea3c05d231a0ea6141bd0d52af0697fa1f019645fa1f3f6c85d775ba8e8017e646a6"
+          "checksumValue": "ea5be36d2de9f5be02add0a682ecdb876ff8ba85e1184daaef5478397e6ca85f51d5ba3d5dde9f1ab3007efa79c270b39419c555d08ea7aa27b934156e8f2251"
         }
       ]
     },
@@ -9511,10 +9511,10 @@
     },
     {
       "name": "wxt",
-      "SPDXID": "SPDXRef-Package-wxt-0.20.25",
-      "versionInfo": "0.20.25",
+      "SPDXID": "SPDXRef-Package-wxt-0.20.26",
+      "versionInfo": "0.20.26",
       "packageFileName": "node_modules/wxt",
-      "downloadLocation": "https://registry.npmjs.org/wxt/-/wxt-0.20.25.tgz",
+      "downloadLocation": "https://registry.npmjs.org/wxt/-/wxt-0.20.26.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -9522,13 +9522,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/wxt@0.20.25"
+          "referenceLocator": "pkg:npm/wxt@0.20.26"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "71afbc62dd00bb39fdb57d195b62b3a1c6fdc8cf05fd1a0e8dc610d1f1e4c1c49ceff21492a576fb5254367d523123404b81abdd8407027fe98b7abe8c8191ab"
+          "checksumValue": "3cc1b3eec02538d260c0190eae22275cea0453afe39462ab85216f65f8813c766873260f7e7c3596877dac60eb6bde7b1fcdd63be4e71a3630262198722488a8"
         }
       ]
     },
@@ -9695,10 +9695,10 @@
     },
     {
       "name": "zod",
-      "SPDXID": "SPDXRef-Package-zod-4.4.1",
-      "versionInfo": "4.4.1",
+      "SPDXID": "SPDXRef-Package-zod-4.4.3",
+      "versionInfo": "4.4.3",
       "packageFileName": "node_modules/zod",
-      "downloadLocation": "https://registry.npmjs.org/zod/-/zod-4.4.1.tgz",
+      "downloadLocation": "https://registry.npmjs.org/zod/-/zod-4.4.3.tgz",
       "filesAnalyzed": false,
       "homepage": "NOASSERTION",
       "licenseDeclared": "MIT",
@@ -9706,13 +9706,13 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/zod@4.4.1"
+          "referenceLocator": "pkg:npm/zod@4.4.3"
         }
       ],
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "6ba10d301046641b2795279b43f78a0a0b9205e18a49fe0eec13e7a953e6606b6905823b552aa856ac3e41c07b90f4636ea3f08584e915b563fd1a8dcff093d1"
+          "checksumValue": "cad10d163209165d94c1882575eda37215b61f09b818914b0e249759d4eb25004837d15cca9ee7e0387124489634024c575fc1a967d6fe4920ef55037072724d"
         }
       ]
     }
@@ -9720,32 +9720,32 @@
   "relationships": [
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.4.0",
       "relationshipType": "DESCRIBES"
     },
     {
       "spdxElementId": "SPDXRef-Package-tldts-7.0.30",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.4.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-types.chrome-0.1.42",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.4.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-typescript-6.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.4.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
+      "spdxElementId": "SPDXRef-Package-vitest-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.4.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-wxt-0.20.25",
-      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.3.0",
+      "spdxElementId": "SPDXRef-Package-wxt-0.20.26",
+      "relatedSpdxElement": "SPDXRef-Package-jayquery-0.4.0",
       "relationshipType": "DEV_DEPENDENCY_OF"
     },
     {
@@ -9924,7 +9924,7 @@
       "relationshipType": "PREREQUISITE_FOR"
     },
     {
-      "spdxElementId": "SPDXRef-Package-tybys.wasm-util-0.10.1",
+      "spdxElementId": "SPDXRef-Package-tybys.wasm-util-0.10.2",
       "relatedSpdxElement": "SPDXRef-Package-napi-rs.wasm-runtime-1.1.4",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -9950,22 +9950,22 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-emnapi.core-1.10.0",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.0-rc.17",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.1",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-emnapi.runtime-1.10.0",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.0-rc.17",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.1",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-napi-rs.wasm-runtime-1.1.4",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.0-rc.17",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.1",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tslib-2.8.1",
-      "relatedSpdxElement": "SPDXRef-Package-tybys.wasm-util-0.10.1",
+      "relatedSpdxElement": "SPDXRef-Package-tybys.wasm-util-0.10.2",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
@@ -9994,108 +9994,108 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-undici-types-7.19.2",
-      "relatedSpdxElement": "SPDXRef-Package-types.node-25.6.0",
+      "spdxElementId": "SPDXRef-Package-undici-types-7.24.6",
+      "relatedSpdxElement": "SPDXRef-Package-types.node-25.8.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-standard-schema.spec-1.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-types.chai-5.2.3",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.spy-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.spy-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-chai-6.2.2",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyrainbow-3.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.expect-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vite-8.0.10",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vite-8.0.13",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.spy-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.spy-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-estree-walker-3.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-magic-string-0.30.21",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.mocker-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyrainbow-3.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.pretty-format-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.pretty-format-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.runner-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.runner-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-pathe-2.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.runner-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.runner-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.pretty-format-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.pretty-format-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-magic-string-0.30.21",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-pathe-2.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.snapshot-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.pretty-format-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.utils-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.pretty-format-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.utils-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-convert-source-map-2.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.utils-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.utils-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyrainbow-3.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest.utils-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest.utils-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
@@ -10110,16 +10110,16 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-types.filesystem-0.0.36",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-dev.browser-0.1.40",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-dev.browser-0.1.42",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-types.har-format-1.2.16",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-dev.browser-0.1.40",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-dev.browser-0.1.42",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-wxt-dev.browser-0.1.40",
+      "spdxElementId": "SPDXRef-Package-wxt-dev.browser-0.1.42",
       "relatedSpdxElement": "SPDXRef-Package-wxt-dev.storage-1.2.8",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10224,7 +10224,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.5.0",
+      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.6.0",
       "relatedSpdxElement": "SPDXRef-Package-string-width-7.2.0",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10264,7 +10264,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-magicast-0.5.2",
+      "spdxElementId": "SPDXRef-Package-magicast-0.5.3",
       "relatedSpdxElement": "SPDXRef-Package-c12-3.3.4",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10299,7 +10299,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-jiti-2.6.1",
+      "spdxElementId": "SPDXRef-Package-jiti-2.7.0",
       "relatedSpdxElement": "SPDXRef-Package-c12-3.3.4",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10334,7 +10334,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-types.node-25.6.0",
+      "spdxElementId": "SPDXRef-Package-types.node-25.8.0",
       "relatedSpdxElement": "SPDXRef-Package-chrome-launcher-1.2.0",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10709,7 +10709,7 @@
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-types.estree-1.0.8",
+      "spdxElementId": "SPDXRef-Package-types.estree-1.0.9",
       "relatedSpdxElement": "SPDXRef-Package-estree-walker-3.0.3",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10724,7 +10724,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-fs-extra-11.3.4",
+      "spdxElementId": "SPDXRef-Package-fs-extra-11.3.5",
       "relatedSpdxElement": "SPDXRef-Package-firefox-profile-4.7.0",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10745,17 +10745,17 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-graceful-fs-4.2.11",
-      "relatedSpdxElement": "SPDXRef-Package-fs-extra-11.3.4",
+      "relatedSpdxElement": "SPDXRef-Package-fs-extra-11.3.5",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-jsonfile-6.2.1",
-      "relatedSpdxElement": "SPDXRef-Package-fs-extra-11.3.4",
+      "relatedSpdxElement": "SPDXRef-Package-fs-extra-11.3.5",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-universalify-2.0.1",
-      "relatedSpdxElement": "SPDXRef-Package-fs-extra-11.3.4",
+      "relatedSpdxElement": "SPDXRef-Package-fs-extra-11.3.5",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
@@ -10824,7 +10824,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.5.0",
+      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.6.0",
       "relatedSpdxElement": "SPDXRef-Package-is-fullwidth-code-point-5.1.0",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -10909,7 +10909,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-semver-7.7.4",
+      "spdxElementId": "SPDXRef-Package-semver-7.8.0",
       "relatedSpdxElement": "SPDXRef-Package-jsonwebtoken-9.0.3",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -11149,7 +11149,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.5.0",
+      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.6.0",
       "relatedSpdxElement": "SPDXRef-Package-string-width-7.2.0",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -11180,17 +11180,17 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-babel.parser-7.29.3",
-      "relatedSpdxElement": "SPDXRef-Package-magicast-0.5.2",
+      "relatedSpdxElement": "SPDXRef-Package-magicast-0.5.3",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-babel.types-7.29.0",
-      "relatedSpdxElement": "SPDXRef-Package-magicast-0.5.2",
+      "relatedSpdxElement": "SPDXRef-Package-magicast-0.5.3",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-source-map-js-1.2.1",
-      "relatedSpdxElement": "SPDXRef-Package-magicast-0.5.2",
+      "relatedSpdxElement": "SPDXRef-Package-magicast-0.5.3",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
@@ -11269,7 +11269,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-semver-7.7.4",
+      "spdxElementId": "SPDXRef-Package-semver-7.8.0",
       "relatedSpdxElement": "SPDXRef-Package-node-notifier-10.0.1",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -11384,7 +11384,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-semver-7.7.4",
+      "spdxElementId": "SPDXRef-Package-semver-7.8.0",
       "relatedSpdxElement": "SPDXRef-Package-package-json-10.0.1",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -11490,17 +11490,17 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-nanoid-3.3.12",
-      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.13",
+      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.14",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-picocolors-1.1.1",
-      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.13",
+      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.14",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-source-map-js-1.2.1",
-      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.13",
+      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.14",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
@@ -11559,7 +11559,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-zod-4.4.1",
+      "spdxElementId": "SPDXRef-Package-zod-4.4.3",
       "relatedSpdxElement": "SPDXRef-Package-publish-browser-extension-4.0.5",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -11654,88 +11654,88 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-oxc-project.types-0.127.0",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-oxc-project.types-0.130.0",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.pluginutils-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.pluginutils-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-android-arm64-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-android-arm64-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-darwin-arm64-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-darwin-arm64-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-darwin-x64-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-darwin-x64-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-freebsd-x64-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-freebsd-x64-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-arm-gnueabihf-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-arm-gnueabihf-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-arm64-gnu-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-arm64-gnu-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-arm64-musl-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-arm64-musl-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-ppc64-gnu-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-ppc64-gnu-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-s390x-gnu-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-s390x-gnu-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-x64-gnu-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-x64-gnu-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-x64-musl-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-linux-x64-musl-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-openharmony-arm64-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-openharmony-arm64-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-wasm32-wasi-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-win32-arm64-msvc-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-win32-arm64-msvc-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown.binding-win32-x64-msvc-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.0-rc.17",
+      "spdxElementId": "SPDXRef-Package-rolldown.binding-win32-x64-msvc-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-rolldown-1.0.1",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
@@ -11794,7 +11794,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.5.0",
+      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.6.0",
       "relatedSpdxElement": "SPDXRef-Package-string-width-8.2.1",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -11839,73 +11839,78 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
+      "spdxElementId": "SPDXRef-Package-rolldown-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
+      "relationshipType": "DEPENDENCY_OF"
+    },
+    {
       "spdxElementId": "SPDXRef-Package-acorn-8.16.0",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-escape-string-regexp-5.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-estree-walker-3.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-local-pkg-1.1.2",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-magic-string-0.30.21",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-mlly-1.8.2",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-pathe-2.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-picomatch-4.0.4",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-pkg-types-2.3.1",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-scule-1.3.0",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-strip-literal-3.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyglobby-0.2.16",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-unplugin-3.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-unplugin-utils-0.3.1",
-      "relatedSpdxElement": "SPDXRef-Package-unimport-6.2.0",
+      "relatedSpdxElement": "SPDXRef-Package-unimport-6.3.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
@@ -11974,7 +11979,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-semver-7.7.4",
+      "spdxElementId": "SPDXRef-Package-semver-7.8.0",
       "relatedSpdxElement": "SPDXRef-Package-update-notifier-7.3.1",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -11984,48 +11989,48 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-types.node-25.6.0",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "spdxElementId": "SPDXRef-Package-types.node-25.8.0",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-esbuild-0.27.7",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-jiti-2.6.1",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "spdxElementId": "SPDXRef-Package-jiti-2.7.0",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-lightningcss-1.32.0",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-picomatch-4.0.4",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-postcss-8.5.13",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "spdxElementId": "SPDXRef-Package-postcss-8.5.14",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rolldown-1.0.0-rc.17",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "spdxElementId": "SPDXRef-Package-rolldown-1.0.1",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyglobby-0.2.16",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-fsevents-2.3.3",
-      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.10",
+      "relatedSpdxElement": "SPDXRef-Package-vite-8.0.13",
       "relationshipType": "OPTIONAL_DEPENDENCY_OF"
     },
     {
@@ -12049,113 +12054,113 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vite-8.0.10",
+      "spdxElementId": "SPDXRef-Package-vite-8.0.13",
       "relatedSpdxElement": "SPDXRef-Package-vite-node-6.0.0",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-types.node-25.6.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-types.node-25.8.0",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.expect-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.expect-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.mocker-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.mocker-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.pretty-format-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.pretty-format-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.runner-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.runner-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.snapshot-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.snapshot-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.spy-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.spy-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vitest.utils-4.1.6",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-es-module-lexer-2.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-expect-type-1.3.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-magic-string-0.30.21",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-obug-2.1.1",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-pathe-2.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-picomatch-4.0.4",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-std-env-4.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinybench-2.9.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyexec-1.1.2",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyglobby-0.2.16",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyrainbow-3.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vite-8.0.10",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "spdxElementId": "SPDXRef-Package-vite-8.0.13",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-why-is-node-running-2.3.0",
-      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.5",
+      "relatedSpdxElement": "SPDXRef-Package-vitest-4.1.6",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
@@ -12299,7 +12304,7 @@
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.5.0",
+      "spdxElementId": "SPDXRef-Package-get-east-asian-width-1.6.0",
       "relatedSpdxElement": "SPDXRef-Package-string-width-7.2.0",
       "relationshipType": "DEPENDENCY_OF"
     },
@@ -12335,212 +12340,212 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-1natsu.wait-element-4.2.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-aklinker1.rollup-plugin-visualizer-5.12.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-webext-core.fake-browser-1.3.4",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-webext-core.isolated-element-1.1.5",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-webext-core.match-patterns-1.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-wxt-dev.browser-0.1.40",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "spdxElementId": "SPDXRef-Package-wxt-dev.browser-0.1.42",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-wxt-dev.storage-1.2.8",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-async-mutex-0.5.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-c12-3.3.4",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-cac-7.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-chokidar-5.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-ci-info-4.4.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-consola-3.4.2",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-defu-6.1.7",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-dotenv-expand-12.0.3",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-esbuild-0.27.7",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-filesize-11.0.17",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-get-port-please-3.2.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-giget-3.2.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-hookable-6.1.1",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-import-meta-resolve-4.2.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-is-wsl-3.1.1",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-json5-2.2.3",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-jszip-3.10.1",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-linkedom-0.18.12",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-magicast-0.5.2",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "spdxElementId": "SPDXRef-Package-magicast-0.5.3",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-nano-spawn-2.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-nanospinner-1.2.2",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-normalize-path-3.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-nypm-0.6.6",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-ohash-2.0.11",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-open-11.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-perfect-debounce-2.1.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-picomatch-4.0.4",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-prompts-2.4.2",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-publish-browser-extension-4.0.5",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-scule-1.3.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-tinyglobby-0.2.16",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unimport-6.2.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "spdxElementId": "SPDXRef-Package-unimport-6.3.0",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
-      "spdxElementId": "SPDXRef-Package-vite-8.0.10",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "spdxElementId": "SPDXRef-Package-vite-8.0.13",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-vite-node-6.0.0",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {
       "spdxElementId": "SPDXRef-Package-web-ext-run-0.2.4",
-      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.25",
+      "relatedSpdxElement": "SPDXRef-Package-wxt-0.20.26",
       "relationshipType": "DEPENDENCY_OF"
     },
     {

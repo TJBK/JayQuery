@@ -341,6 +341,7 @@ async function loadScopeComparison(
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
       customDkimSelectors: settings.customDkimSelectors,
+      fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
     });
     renderResult(result);
   } catch (err) {
@@ -825,6 +826,13 @@ function renderSettings(): void {
               </span>
               <input type="checkbox" id="setting-dns-errors-fail" ${settings.treatDnsResolutionErrorsAsFailure ? 'checked' : ''} />
             </label>
+            <label class="settings-row">
+              <span class="settings-row__text">
+                <strong>Fetch MTA-STS policy file</strong>
+                <span class="settings-row__hint">When on, JayQuery fetches https://mta-sts.&lt;domain&gt;/.well-known/mta-sts.txt and shows a policy card.</span>
+              </span>
+              <input type="checkbox" id="setting-mta-sts-policy" ${settings.fetchMtaStsPolicy ? 'checked' : ''} />
+            </label>
             <fieldset class="settings-fieldset settings-fieldset--in-advanced">
               <legend class="settings-fieldset__legend">DNS-over-HTTPS</legend>
               <p class="settings-fieldset__hint">Primary resolver. On fetch failure or an empty OK response JayQuery retries with the alternate public resolver (Google and Cloudflare).</p>
@@ -860,6 +868,15 @@ function renderSettings(): void {
   dnsFail?.addEventListener('change', () => {
     void persistSettingsAndRefresh({
       treatDnsResolutionErrorsAsFailure: dnsFail.checked,
+    });
+  });
+
+  const mtaStsPolicy = document.getElementById(
+    'setting-mta-sts-policy',
+  ) as HTMLInputElement | null;
+  mtaStsPolicy?.addEventListener('change', () => {
+    void persistSettingsAndRefresh({
+      fetchMtaStsPolicy: mtaStsPolicy.checked,
     });
   });
 
@@ -1001,7 +1018,8 @@ function partialNeedsDnsRefresh(partial: Partial<ExtensionSettings>): boolean {
   return (
     partial.treatDnsResolutionErrorsAsFailure !== undefined ||
     partial.dnsProvider !== undefined ||
-    partial.customDkimSelectors !== undefined
+    partial.customDkimSelectors !== undefined ||
+    partial.fetchMtaStsPolicy !== undefined
   );
 }
 
@@ -1028,6 +1046,7 @@ async function persistSettingsAndRefresh(
             settings.treatDnsResolutionErrorsAsFailure,
           dnsProvider: settings.dnsProvider,
           customDkimSelectors: settings.customDkimSelectors,
+          fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
         });
         lastResult = result;
         await syncToolbarIconFromResult(result);
@@ -1076,6 +1095,7 @@ async function runCheck(mode: CheckMode): Promise<void> {
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
       customDkimSelectors: settings.customDkimSelectors,
+      fetchMtaStsPolicy: settings.fetchMtaStsPolicy,
     });
     lastResult = result;
     await syncToolbarIconFromResult(result);

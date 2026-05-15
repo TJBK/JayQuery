@@ -9,11 +9,12 @@ export default defineConfig({
       'DNS checks for the active site: SPF, DMARC, DKIM via DoH; pillar scores & checklist in toolbar/popup.',
     homepage_url: 'https://github.com/LukeSteward/JayQuery',
     permissions: ['storage', 'tabs'],
-    /** DoH plus Entra OIDC only (no catch-all HTTPS patterns). Tabs permission exposes Tab.url for the toolbar badge and popup. */
+    /** DoH, Entra OIDC, and optional MTA-STS policy file fetches. Tabs permission exposes Tab.url for the toolbar badge and popup. */
     host_permissions: [
       'https://cloudflare-dns.com/*',
       'https://dns.google/*',
       'https://login.microsoftonline.com/*',
+      'https://*/.well-known/mta-sts.txt',
     ],
     /**
      * Firefox 140+ built-in data consent (required for new extensions from 2025-11-03).

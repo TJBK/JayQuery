@@ -398,6 +398,31 @@ body {
   accent-color: var(--accent);
 }
 
+.settings-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-text-field input {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+  color: var(--text);
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.76rem;
+  outline: none;
+}
+
+.settings-text-field input:focus {
+  border-color: rgba(91, 140, 255, 0.55);
+  box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.14);
+}
+
 .settings-fieldset {
   margin: 0 0 8px;
   padding: 12px 0 4px;

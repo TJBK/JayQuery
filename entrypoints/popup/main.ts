@@ -736,6 +736,13 @@ function renderSettings(): void {
         <details class="settings-advanced">
           <summary class="settings-advanced__summary">Advanced</summary>
           <div class="settings-advanced__inner">
+            <label class="settings-text-field">
+              <span class="settings-row__text">
+                <strong>Custom DKIM selectors</strong>
+                <span class="settings-row__hint">Comma or space separated. These are probed before provider and common selectors.</span>
+              </span>
+              <input type="text" id="setting-custom-dkim-selectors" value="${escapeHtml(settings.customDkimSelectors.join(', '))}" placeholder="e.g. s1 selector1 mail" autocomplete="off" spellcheck="false" />
+            </label>
             <label class="settings-row">
               <span class="settings-row__text">
                 <strong>Treat DNS resolution errors as failure</strong>
@@ -811,6 +818,15 @@ function renderSettings(): void {
         });
       });
     });
+
+  const customDkimSelectors = document.getElementById(
+    'setting-custom-dkim-selectors',
+  ) as HTMLInputElement | null;
+  customDkimSelectors?.addEventListener('change', () => {
+    void persistSettingsAndRefresh({
+      customDkimSelectors: parseSelectorList(customDkimSelectors.value),
+    });
+  });
 }
 
 function bindMailInfraCopyButtons(): void {
@@ -828,6 +844,20 @@ function bindSettingsFab(): void {
     currentView = 'settings';
     renderSettings();
   });
+}
+
+function parseSelectorList(raw: string): string[] {
+  const seen = new Set<string>();
+  const selectors: string[] = [];
+  for (const part of raw.split(/[\s,]+/)) {
+    const selector = part.trim();
+    if (!selector || selector.includes('.')) continue;
+    const key = selector.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    selectors.push(selector);
+  }
+  return selectors.slice(0, 20);
 }
 
 function hostnameFromManualInput(raw: string): string | null {
@@ -894,7 +924,8 @@ function bindWelcomeActions(): void {
 function partialNeedsDnsRefresh(partial: Partial<ExtensionSettings>): boolean {
   return (
     partial.treatDnsResolutionErrorsAsFailure !== undefined ||
-    partial.dnsProvider !== undefined
+    partial.dnsProvider !== undefined ||
+    partial.customDkimSelectors !== undefined
   );
 }
 
@@ -920,6 +951,7 @@ async function persistSettingsAndRefresh(
           treatDnsResolutionErrorsAsFailure:
             settings.treatDnsResolutionErrorsAsFailure,
           dnsProvider: settings.dnsProvider,
+          customDkimSelectors: settings.customDkimSelectors,
         });
         lastResult = result;
         await syncToolbarIconFromResult(result);
@@ -966,6 +998,7 @@ async function runCheck(mode: CheckMode): Promise<void> {
       treatDnsResolutionErrorsAsFailure:
         settings.treatDnsResolutionErrorsAsFailure,
       dnsProvider: settings.dnsProvider,
+      customDkimSelectors: settings.customDkimSelectors,
     });
     lastResult = result;
     await syncToolbarIconFromResult(result);

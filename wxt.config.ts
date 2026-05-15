@@ -6,7 +6,7 @@ export default defineConfig({
     name: 'JayQuery',
     short_name: 'JayQuery',
     description:
-      'Evaluates email-authentication DNS (SPF, DMARC and DKIM with common selectors) for the active tab’s hostname via DNS-over-HTTPS, alongside MX and NS lookups, MTA-STS and TLS-RPT TXT records, DNSSEC signalling, and a Microsoft Entra OIDC tenant probe. Toolbar and popup show a pillar score out of ten with checklist-style breakdowns. No content scripts or permissive wildcard host permissions — only Cloudflare/Google public DoH and login.microsoftonline.com.',
+      'DNS checks for the active site: SPF, DMARC, DKIM via DoH; pillar scores & checklist in toolbar/popup.',
     homepage_url: 'https://github.com/LukeSteward/JayQuery',
     permissions: ['storage', 'tabs'],
     /** DoH plus Entra OIDC only (no catch-all HTTPS patterns). Tabs permission exposes Tab.url for the toolbar badge and popup. */
